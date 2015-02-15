@@ -1,2 +1,2 @@
-# words-with-enemies
+# Words With Enemies
 A word guessing game.
