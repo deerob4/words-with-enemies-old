@@ -1,0 +1,21 @@
+.setup h1 {
+    font-family: Dosis, sans-serif;
+    text-align: center;
+    font-size: 80px;
+}
+.setup p {
+    font-family: Dosis, sans-serif;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+}
+.setup-text {
+    margin-top: 200px;
+}
+.rotate {
+    -webkit-animation: rotation 4s infinite linear;
+}
+@-webkit-keyframes rotation {
+    25% { -webkit-transform: rotate(-3deg); }
+    75% { -webkit-transform: rotate(3deg); }
+}
