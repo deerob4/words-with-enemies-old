@@ -16,7 +16,7 @@
             <div class="setup-text animated bounceInDown">
                 <h1>Words With Enemies</h1>
 
-                <p>Expand your vocabulary and save the world from the Ooglies!</p>
+                <p>Expand your vocabulary whilst boosting your ego!</p>
             </div>
             <div class="outer-main-buttons">
                 <div class="setup-buttons animated bounceInUp">
@@ -52,7 +52,13 @@
     </div>
 </div>
 <div class="game">
-    <h1>Make a word</h1>
+    <div class="scoreboard">
+        <div class="col-sm-4"><span class="username">{{ username }} - 0</span></div>
+        <div class="col-sm-4"><span class="round-number">Round 1</span></div>
+        <div class="col-sm-4"><span class="computer">Computer - 0</span></div>
+    </div>
+    <div class="line scoreboard-line"></div>
+    <ul class="formed-word"></ul>
     <div class="letter-bank">
         <div class="line"></div>
         <ul class="letters" id="letters"></ul>

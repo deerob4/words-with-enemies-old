@@ -3,6 +3,19 @@ $(document).ready(function () {
     var bgMusic = new buzz.sound('../static/sounds/sand_castles.mp3');
     bgMusic.play().loop().fadeIn();
 
+    var userColour = randomColor({luminosity: 'light', hue: 'blue'});
+    var computerColour = randomColor({luminosity: 'light', hue: 'red'});
+
+    var currentWord = [];
+
+    var letters = document.getElementById('letters');
+    var sortable = new Sortable(letters, {
+        sort: true,
+        draggable: '.letter',
+        animation: 200,
+        ghostClass: 'letter-ghost'
+    });
+
     function mainMenu() {
         setTimeout(function () {
             $('.setup-text, .setup-buttons').addClass('rotate');
@@ -10,7 +23,10 @@ $(document).ready(function () {
         }, 1000);
 
         var colourChoices = ['blue', 'red', 'orange', 'purple'];
-        var subtitleColour = randomColor({luminosity: 'light', hue: colourChoices[Math.floor(Math.random()*colourChoices.length)]});
+        var subtitleColour = randomColor({
+            luminosity: 'light',
+            hue: colourChoices[Math.floor(Math.random() * colourChoices.length)]
+        });
         var headingColour = colorLuminance(subtitleColour, -0.2);
 
         $('.setup h1').css('color', headingColour);
@@ -33,44 +49,40 @@ $(document).ready(function () {
         });
 
         $('.play-button').click(function () {
-            $('.outer-main-buttons').addClass('animated bounceOutDown');
+            $('.outer-main-buttons').addClass('animated bounceOutLeft');
             setTimeout(function () {
-                $('.outer-main-buttons').css('display', 'none').removeClass('animated bounceOutDown');
-                $('.outer-difficulty-buttons').css('display', 'block').addClass('animated bounceInUp');
-            }, 500)
+                $('.outer-main-buttons').css('display', 'none').removeClass('animated bounceOutLeft');
+                $('.outer-difficulty-buttons').css('display', 'block').addClass('animated bounceInRight');
+            }, 600)
         });
 
         $('.difficulty-button').click(function () {
             var difficulty = $(this).attr('id');
-            $('.setup').addClass('animated bounceOutDown');
+            $('.setup').addClass('animated bounceOutLeft');
             setTimeout(function () {
-                $('.setup').css('display', 'none').removeClass('animated bounceOutDown');
-                $('.game').css('display', 'block').addClass('animated zoomInDown');
+                $('.setup').css('display', 'none').removeClass('animated bounceOutLeft');
+                $('.game').css('display', 'block').addClass('animated bounceInRight');
                 randomLetters(difficulty)
-            }, 500)
+            }, 600)
         });
     }
-
-    $('.change-background').click(function () {
-        changePageBackground();
-    });
 
     function displayLetters(letterset) {
         for (var i = 0; i <= letterset.length - 1; i++) {
             var mainColour = randomColor({luminosity: 'light'});
             var borderColour = colorLuminance(mainColour, -0.2);
-            $('.letters').append('<li class="letter" style="background-color: ' + mainColour + '; border: 3px solid ' + borderColour + ';">' + letterset[i] + '</li>');
+            $('.letters').append('<li class="letter" id=' + i + '" style="background-color: ' + mainColour + '; border: 3px solid ' + borderColour + ';">' + letterset[i] + '</li>');
         }
         $('.line').css('background-color', colorLuminance(randomColor({luminosity: 'light'}), -0.2));
-    }
+        $('.username').css('color', userColour);
+        $('.round-number').css('color', randomColor({luminosity: 'light'}));
+        $('.computer').css('color', computerColour);
 
-    var letters = document.getElementById('letters');
-    var sortable = new Sortable(letters, {
-        sort: true,
-        draggable: '.letter',
-        animation: 200,
-        ghostClass: 'letter-ghost'
-    });
+        $('.letter').click(function () {
+            addToWord($(this));
+        });
+
+    }
 
     function randomLetters(difficulty) {
         $.ajax({
@@ -78,9 +90,34 @@ $(document).ready(function () {
             type: 'POST',
             data: difficulty,
             success: function (data) {
+                console.log(difficulty + ' mode chosen.');
+                console.log('Letters: ' + data['letterset']);
                 displayLetters(data['letterset']);
             }
         })
+    }
+
+    function addToWord($letter) {
+        var letter = $letter.text();
+        if (!$letter.hasClass('added')) {
+            currentWord.push(letter);
+            $letter.addClass('added');
+            $('.formed-word').append('<li class="letter" id=' + letter + '" style="background-color: ' + $letter.css('background-color') + '; border: 3px solid ' + $letter.css('border-color') + ';">' + letter + '</li>');
+            $letter.remove();
+        } else {
+            remove(currentWord, letter);
+            $letter.removeClass('added');
+        }
+        console.log(currentWord)
+        $('.formed-word .letter').click(function () {
+            addToTray($(this));
+        })
+    }
+
+    function addToTray($letter) {
+        var letter = $letter.text();
+        $('.letters').append('<li class="letter" id=' + letter + '" style="background-color: ' + $letter.css('background-color') + '; border: 3px solid ' + $letter.css('border-color') + ';">' + letter + '</li>');
+        $letter.remove();
     }
 
     function colorLuminance(hex, lum) {
@@ -102,11 +139,15 @@ $(document).ready(function () {
         return rgb;
     }
 
-    function changePageBackground() {
-        $('.game').css('background-color', colorLuminance(randomColor({luminosity: 'light', hue: 'yellow'}), 0.3));
+    function remove(array, what) {
+        var found = array.indexOf(what);
+
+        while (found !== -1) {
+            array.splice(found, 1);
+            found = array.indexOf(what);
+        }
     }
 
-    //changePageBackground();
     mainMenu();
 
 });
