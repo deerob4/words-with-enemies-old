@@ -5,18 +5,42 @@
     <title>Words With Enemies</title>
     <link href='http://fonts.googleapis.com/css?family=Dosis:400,500,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css"/>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
 </head>
 <body>
-    <div class="setup">
-        <div class="container">
+<div class="setup">
+    <div class="container">
+        <div class="menu">
             <div class="setup-text animated bounceInDown">
                 <h1>Words With Enemies</h1>
+
                 <p>Expand your vocabulary and save the world from the Ooglies!</p>
             </div>
+            <div class="setup-buttons animated bounceInUp">
+                <div class="button instructions-button">Instructions</div>
+                <div class="button play-game-button">Play Now</div>
+                <a href="https://github.com/deerob4/words-with-enemies" target="_blank">
+                    <div class="button source-button">Source</div>
+                </a>
+            </div>
+        </div>
+        <div class="instructions">
+            <h1>Instructions</h1>
+
+            <p>Welcome to Words With Enemies! Your job is to defend the world from the ongoing Ooglie invasion. Each
+                turn, you will be given a selection of letters - use them to make the biggest word you can! The Ooglies
+                will do the same, and at the end of the round the words will be fired at each other.</p>
+
+            <p>Letters that are the same in both words will collide and explode, so choose carefully! The winner of each
+                round is the one who has the most letters left over. For example, if you chose "quartette", and the
+                Ooglies chose "fairs", you would win, because the Ooglies would have "fis" left over and you would have
+                "qutette". It makes sense when you play! </p>
+
+            <div class="button return-button">Got it!</div>
         </div>
     </div>
+</div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
