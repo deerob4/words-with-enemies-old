@@ -2,6 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Words With Enemies</title>
     <link href='http://fonts.googleapis.com/css?family=Dosis:400,500,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css"/>
@@ -17,12 +18,21 @@
 
                 <p>Expand your vocabulary and save the world from the Ooglies!</p>
             </div>
-            <div class="setup-buttons animated bounceInUp">
-                <div class="button instructions-button">Instructions</div>
-                <div class="button play-game-button">Play Now</div>
-                <a href="https://github.com/deerob4/words-with-enemies" target="_blank">
-                    <div class="button source-button">Source</div>
-                </a>
+            <div class="outer-main-buttons">
+                <div class="setup-buttons animated bounceInUp">
+                    <div class="button instructions-button">Instructions</div>
+                    <div class="button play-button">Play Now</div>
+                    <a href="https://github.com/deerob4/words-with-enemies" target="_blank">
+                        <div class="button source-button">Source</div>
+                    </a>
+                </div>
+            </div>
+            <div class="outer-difficulty-buttons">
+                <div class="setup-buttons">
+                    <div class="difficulty-button" id="easy">Easy</div>
+                    <div class="difficulty-button" id="medium">Medium</div>
+                    <div class="difficulty-button" id="hard">Hard</div>
+                </div>
             </div>
         </div>
         <div class="instructions">
@@ -41,9 +51,18 @@
         </div>
     </div>
 </div>
+<div class="game">
+    <h1>Make a word</h1>
+    <div class="letter-bank">
+        <div class="line"></div>
+        <ul class="letters" id="letters"></ul>
+    </div>
+</div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/buzz/1.1.8/buzz.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/randomcolor/0.1.1/randomColor.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Sortable/1.1.0/Sortable.min.js"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </html>

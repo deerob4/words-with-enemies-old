@@ -10,19 +10,6 @@ user_map = {'easy': 12, 'medium': 8, 'hard': 6}
 ai_map = {'easy': 6, 'medium': 12, 'hard': 15}
 
 
-def setup():
-    print('\nWords with Enemies\n' + '-' * 18)
-    print('Welcome, {0}. Please choose easy, medium or hard:'.format(username))
-    while True:
-        difficulty = input('> ').lower()
-        if difficulty in ['easy', 'medium', 'hard']:
-            break
-        print('\nPlease enter easy, medium or hard.')
-    print('{0} it is, then. En garde!'.format(difficulty.title()))
-
-    game(difficulty)
-
-
 def game(difficulty):
     current_round = 1
     user_score = 0

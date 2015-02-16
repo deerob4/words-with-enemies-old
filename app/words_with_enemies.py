@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from app.generate import random_letters
 from getpass import getuser
 
@@ -10,10 +10,11 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/_ajax/get_letters', methods=['POST'])
+@app.route('/_ajax/random_letters', methods=['POST'])
 def get_letters():
-    print(random_letters(10))
-    return jsonify(letters=random_letters(10))
+    difficulty_map = {'easy': 10, 'medium': 10, 'hard': 6}
+    difficulty = request.get_data().decode("utf-8")
+    return jsonify(letterset=random_letters(difficulty_map[difficulty]))
 
 
 @app.route('/_ajax/get_username', methods=['POST'])
