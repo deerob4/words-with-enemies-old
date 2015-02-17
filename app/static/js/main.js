@@ -3,8 +3,11 @@ $(document).ready(function () {
     var bgMusic = new buzz.sound('../static/sounds/sand_castles.mp3');
     bgMusic.play().loop().fadeIn();
 
-    var userColour = randomColor({luminosity: 'light', hue: 'blue'});
-    var computerColour = randomColor({luminosity: 'light', hue: 'red'});
+    var colourChoices = ['blue', 'red', 'orange', 'purple'];
+    var mainColour = randomColor({
+        luminosity: 'light',
+        hue: colourChoices[Math.floor(Math.random() * colourChoices.length)]
+    });
 
     var currentWord = [];
 
@@ -16,21 +19,37 @@ $(document).ready(function () {
         ghostClass: 'letter-ghost'
     });
 
+
+    function calculateColours() {
+        var gameColour = colorLuminance(mainColour, -0.2);
+        //Main menu colours
+        $('.setup h1').css('color', gameColour);
+        $('.setup p').css('color', mainColour);
+        var buttonColour = colorLuminance(mainColour, -0.3);
+        $('.setup-buttons div').css('border-color', buttonColour).css('color', buttonColour);
+
+        var userColour = randomColor({luminosity: 'light'});
+        var computerColour = randomColor({luminosity: 'light', hue: 'red'});
+
+        $('.game').css('border-color', mainColour);
+
+        $('.line').css('background-color', mainColour);
+        $('.username').css('color', userColour);
+        $('.round-number').css('color', randomColor({luminosity: 'light'}));
+        $('.computer').css('color', computerColour);
+
+        var userWordBackground = colorLuminance(userColour, 0.1);
+        $('.formed-word').css('background-color', userWordBackground).css('border-color', colorLuminance(userWordBackground, -0.2));
+
+        var computerWordBackground = colorLuminance(computerColour, 0.1);
+        $('.computer-word').css('background-color', computerWordBackground).css('border-color', colorLuminance(computerWordBackground, -0.2));
+    }
+
     function mainMenu() {
         setTimeout(function () {
             $('.setup-text, .setup-buttons').addClass('rotate');
             $('.setup-buttons').removeClass('animated bounceInUp')
         }, 1000);
-
-        var colourChoices = ['blue', 'red', 'orange', 'purple'];
-        var subtitleColour = randomColor({
-            luminosity: 'light',
-            hue: colourChoices[Math.floor(Math.random() * colourChoices.length)]
-        });
-        var headingColour = colorLuminance(subtitleColour, -0.2);
-
-        $('.setup h1').css('color', headingColour);
-        $('.setup p').css('color', subtitleColour);
 
         $('.instructions-button').click(function () {
             $('.menu').addClass('animated bounceOutRight');
@@ -73,15 +92,6 @@ $(document).ready(function () {
             var borderColour = colorLuminance(mainColour, -0.2);
             $('.letters').append('<li class="letter" id=' + i + '" style="background-color: ' + mainColour + '; border: 3px solid ' + borderColour + ';">' + letterset[i] + '</li>');
         }
-        $('.line').css('background-color', colorLuminance(randomColor({luminosity: 'light'}), -0.2));
-        $('.username').css('color', userColour);
-        $('.round-number').css('color', randomColor({luminosity: 'light'}));
-        $('.computer').css('color', computerColour);
-
-        $('.letter').click(function () {
-            addToWord($(this));
-        });
-
     }
 
     function randomLetters(difficulty) {
@@ -108,10 +118,7 @@ $(document).ready(function () {
             remove(currentWord, letter);
             $letter.removeClass('added');
         }
-        console.log(currentWord)
-        $('.formed-word .letter').click(function () {
-            addToTray($(this));
-        })
+        console.log(currentWord);
     }
 
     function addToTray($letter) {
@@ -148,6 +155,15 @@ $(document).ready(function () {
         }
     }
 
+    $('.formed-word').on('click', '.letter', function () {
+        addToTray($(this));
+    });
+
+    $('.letters').on('click', '.letter', function () {
+        addToWord($(this));
+    });
+
+    calculateColours();
     mainMenu();
 
 });

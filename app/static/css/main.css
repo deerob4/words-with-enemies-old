@@ -42,7 +42,7 @@ p {
 .setup-buttons div, .return-button {
     display: inline-block;
     margin-left: 25px;
-    border: 1px solid #000000;
+    border: 2px solid #000000;
     border-radius: 1000px;
     padding: 10px 10px 10px 10px;
     cursor: pointer;
@@ -57,24 +57,28 @@ p {
     font-style: normal;
 }
 .play-button:hover, #easy:hover {
-    background-color: #52aa5e;
+    background-color: #69ea9b;
     transform: scale(1.3);
-    border: 3px solid #42884b;
+    border: 3px solid #54bb7c !important;
+    color: #3c7f56 !important;
 }
 .instructions-button:hover, .return-button:hover {
-    background-color: #2892c2;
+    background-color: #a8e6f4;
     transform: scale(1.3);
-    border: 3px solid #20759b;
+    border: 3px solid #86b8c3 !important;
+    color: #49758c !important;
 }
 .source-button:hover, #medium:hover {
-    background-color: #c2b831;
+    background-color: #fce1a4;
     transform: scale(1.3);
-    border: 3px solid #9b9327;
+    border: 3px solid #cab483 !important;
+    color: #9d9362 !important;
 }
 #hard:hover {
-    background-color: #f73535;
+    background-color: #ffadbf;
     transform: scale(1.3);
-    border: 3px solid #c62a2a;;
+    border: 3px solid #cc8a99 !important;
+    color: rgba(74, 18, 42, 0.46) !important;
 }
 .difficulty-button {
     margin-bottom: 20px;
@@ -104,8 +108,12 @@ p {
 *------------------------------------*/
 .game {
     display: none;
-    width: 100%;
-    height: 100%;
+    width: 1210px;
+    height: 800px;
+    margin: 60px auto;
+    /*border: 4px solid rgb(204, 157, 146);*/
+    position: relative;
+    border-radius: 4px;
 }
 .letter-bank {
     width: 100%;
@@ -122,7 +130,7 @@ ul.letters, ul.formed-word {
 }
 li.letter {
     display: inline-block;
-    margin-left: 9px;
+    margin-right: 9px;
     border-radius: 5px;
     cursor: pointer;
     width: 65px;
@@ -137,17 +145,15 @@ li.letter:active {
     /*transform: scale(1.5);*/
 }
 .letter-bank .line {
-    width: 99%;
+    width: 100%;
     height: 3px;
     background-color: #cc9aa4;
     position: relative;
     margin-bottom: 9px;
-    margin-left: 10px;
 }
 .letter-ghost {
     display: none;
 }
-
 /*------------------------------------*
 /          SCOREBOARD STYLES          /
 *------------------------------------*/
@@ -162,7 +168,7 @@ li.letter:active {
 }
 .scoreboard-line {
     width: 100%;
-    height: 3px;
+    height: 4px;
     background-color: #cc9aa4;
     margin-top: 50px;
     position: relative;
@@ -180,11 +186,34 @@ li.letter:active {
     75% {
         -webkit-transform: rotate(2deg);
     }
-}@-webkit-keyframes computer-rotate {
+}
+@-webkit-keyframes computer-rotate {
     25% {
         -webkit-transform: rotate(2deg);
     }
     75% {
         -webkit-transform: rotate(-2deg);
     }
+}
+/*------------------------------------*
+/          LETTER LIST STYLES          /
+*------------------------------------*/
+.formed-word, .computer-word {
+    border-radius: 4px;
+    border: 4px solid rgb(116, 204, 162);
+    background-color: rgb(145, 255, 202);
+    width: 100%;
+    height: 170px;
+    padding: 40px !important;
+    margin: 43px 0 -7px;
+}
+.formed-word .letter {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+.formed-word {
+    -webkit-animation: user-rotate 15s infinite linear;
+}
+.computer-word {
+    -webkit-animation: computer-rotate 15s infinite linear;
 }
