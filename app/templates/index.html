@@ -29,9 +29,9 @@
             </div>
             <div class="outer-difficulty-buttons">
                 <div class="setup-buttons">
-                    <div class="difficulty-button" id="easy">Easy</div>
-                    <div class="difficulty-button" id="medium">Medium</div>
-                    <div class="difficulty-button" id="hard">Hard</div>
+                    <div class="difficulty-button button" id="easy">Easy</div>
+                    <div class="difficulty-button button" id="medium">Medium</div>
+                    <div class="difficulty-button button" id="hard">Hard</div>
                 </div>
             </div>
         </div>
@@ -57,12 +57,26 @@
         <div class="col-sm-4"><span class="round-number">Round 1</span></div>
         <div class="col-sm-4"><span class="computer">Computer - 0</span></div>
     </div>
-{#    <div class="line scoreboard-line"></div>#}
-    <ul class="formed-word col-md-6"></ul>
-    <ul class="computer-word col-md-6"></ul>
+    {#    <div class="line scoreboard-line"></div>#}
+    <div class="formed-word-wrapper">
+        <ul class="formed-word" id="formed-word">
+            <li class="word-message">Make a word!</li>
+        </ul>
+    </div>
+    <ul class="computer-word">
+        <li class="word-message-computer">Computer's word goes here!</li>
+    </ul>
+    <div class="game-buttons">
+        <div class="finished">Finished!</div>
+        <div class="vowel">Vowel please!</div>
+        <div class="consonant">Consonant please!</div>
+        <div class="hints">Show hints!</div>
+        <div class="change-colours">Change colours!</div>
+    </div>
     <div class="letter-bank">
         <div class="line"></div>
-        <ul class="letters" id="letters"></ul>
+        <ul class="letters" id="letters">
+        </ul>
     </div>
 </div>
 </body>
