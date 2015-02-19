@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 from getpass import getuser
 from random import choice
+from math import ceil
 
 app = Flask(__name__)
 
@@ -23,8 +24,13 @@ def generate_words(letters, difficulty):
         for letter in letters:
             if letter in word_as_list:
                 word_as_list.remove(letter)
-        if len(word_as_list) == 0 and len(word) > 4:
-            found_words.append(word)
+        if len(word_as_list) == 0:
+            if difficulty != 'easy':
+                if len(word) > 4:
+                    found_words.append(word)
+            else:
+                if len(word) > 3:
+                    found_words.append(word)
     print('AI letters were:', ''.join(letters))
     print('Possible words were:', ' '.join(found_words))
     return found_words
@@ -62,18 +68,15 @@ def check_dictionary():
 
 
 @app.route('/_ajax/generate_computer_word', methods=['POST'])
-def generate_computer_word(difficulty='easy'):
+def generate_computer_word():
     difficulty_map = {'easy': 8, 'medium': 10, 'hard': 12}
     difficulty = request.get_data().decode("utf-8")
     letters = random_letters(difficulty_map[difficulty])
     words = generate_words(letters, difficulty)
     if difficulty == "easy":
-        try:
-            return min(words, key=len)
-        except ValueError:
-            generate_computer_word(difficulty)
+        return min(words, key=len)
     elif difficulty == "medium":
-        return choice(words)
+        return words[ceil(len(words) / 2)]
     else:
         return max(words, key=len)
 
