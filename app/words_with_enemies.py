@@ -16,6 +16,20 @@ def check_dictionary(user_word):
         return False
 
 
+def generate_words(letters, difficulty):
+    found_words = []
+    for word in word_list:
+        word_as_list = list(word)
+        for letter in letters:
+            if letter in word_as_list:
+                word_as_list.remove(letter)
+        if len(word_as_list) == 0 and len(word) > 4:
+            found_words.append(word)
+    print('AI letters were:', ''.join(letters))
+    print('Possible words were:', ' '.join(found_words))
+    return found_words
+
+
 def random_letters(n):
     vowels = 'aeiou'
     consonants = 'bcdfghjklmnpqrstvwxyz'
@@ -31,7 +45,7 @@ def index():
 
 @app.route('/_ajax/random_letters', methods=['POST'])
 def get_letters():
-    difficulty_map = {'easy': 15, 'medium': 10, 'hard': 6}
+    difficulty_map = {'easy': 12, 'medium': 10, 'hard': 8}
     difficulty = request.get_data().decode("utf-8")
     return jsonify(letterset=random_letters(difficulty_map[difficulty]))
 
@@ -45,6 +59,23 @@ def check_dictionary():
             return 'valid'
     else:
         return 'invalid'
+
+
+@app.route('/_ajax/generate_computer_word', methods=['POST'])
+def generate_computer_word(difficulty='easy'):
+    difficulty_map = {'easy': 8, 'medium': 10, 'hard': 12}
+    difficulty = request.get_data().decode("utf-8")
+    letters = random_letters(difficulty_map[difficulty])
+    words = generate_words(letters, difficulty)
+    if difficulty == "easy":
+        try:
+            return min(words, key=len)
+        except ValueError:
+            generate_computer_word(difficulty)
+    elif difficulty == "medium":
+        return choice(words)
+    else:
+        return max(words, key=len)
 
 
 if __name__ == '__main__':

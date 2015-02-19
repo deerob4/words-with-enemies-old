@@ -6,6 +6,7 @@ $(document).ready(function () {
     var currentWord = [];
     var wordMessage = true;
     var lettersAdded = 0;
+    var difficulty = 'medium';
 
     var letters = document.getElementById('formed-word');
     var sortable = new Sortable(letters, {
@@ -83,7 +84,7 @@ $(document).ready(function () {
         });
 
         $('.difficulty-button').click(function () {
-            var difficulty = $(this).attr('id');
+            difficulty = $(this).attr('id');
             $('.setup').addClass('animated bounceOutLeft');
             setTimeout(function () {
                 $('.setup').css('display', 'none').removeClass('animated bounceOutLeft');
@@ -122,6 +123,8 @@ $(document).ready(function () {
             success: function (data) {
                 if (data == 'valid') {
                     genericAnimation($('.formed-word'), 'rubberBand', true);
+                    changeComputerText('The computer is thinking!', 20000000);
+                    showComputerWord();
                 } else {
                     genericAnimation($('.formed-word'), 'wobble', true);
                     changeComputerText('Sorry, that isn\'t a real word!', 2000);
@@ -130,21 +133,35 @@ $(document).ready(function () {
         });
     }
 
+    function showComputerWord() {
+        $.ajax({
+            url: '/_ajax/generate_computer_word',
+            type: 'POST',
+            data: difficulty,
+            success: function (word) {
+                console.log(word);
+                word.split();
+                $('.word-message-computer').remove();
+                for (var i = 0; i <= word.length -1; i++) {
+                    var mainColour = randomColor({luminosity: 'light'});
+                    var borderColour = colorLuminance(mainColour, -0.2);
+                    $('.computer-word').append('<li class="letter" id=' + i + '" style="background-color: ' + mainColour + '; border: 3px solid ' + borderColour + '; color: ' + colorLuminance(borderColour, -0.2) + '">' + word[i] + '</li>');
+                }
+            }
+        });
+    }
+
+
     function addToWord($letter) {
         var letter = $letter.text();
-        if (!$letter.hasClass('added')) {
-            if (wordMessage == true) {
-                $('.word-message').remove();
-                wordMessage = false;
-            }
-            currentWord.push(letter);
-            $letter.addClass('added');
-            $('.formed-word').append('<li class="letter" id="' + letter + '" style="background-color: ' + $letter.css('background-color') + '; border: 3px solid ' + $letter.css('border-color') + '; color: ' + $letter.css('border-color') + '">' + letter + '</li>');
-            $letter.remove();
-        } else {
-            remove(currentWord, letter);
-            $letter.removeClass('added');
+        if (wordMessage == true) {
+            $('.word-message').remove();
+            wordMessage = false;
         }
+        currentWord.push(letter);
+        $letter.addClass('added');
+        $('.formed-word').append('<li class="letter" id="' + letter + '" style="background-color: ' + $letter.css('background-color') + '; border: 3px solid ' + $letter.css('border-color') + '; color: ' + $letter.css('border-color') + '">' + letter + '</li>');
+        $letter.remove();
         console.log(currentWord);
     }
 
@@ -227,6 +244,11 @@ $(document).ready(function () {
             $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
         });
         $('.formed-word .letter').each(function () {
+            var background = randomColor({luminosity: 'light'});
+            var border = colorLuminance(background, -0.2);
+            $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
+        });
+        $('.computer-word .letter').each(function () {
             var background = randomColor({luminosity: 'light'});
             var border = colorLuminance(background, -0.2);
             $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
