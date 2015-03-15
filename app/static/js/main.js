@@ -190,15 +190,6 @@ $(document).ready(function () {
         return rgb;
     }
 
-    function remove(array, what) {
-        var found = array.indexOf(what);
-
-        while (found !== -1) {
-            array.splice(found, 1);
-            found = array.indexOf(what);
-        }
-    }
-
     function genericAnimation($element, animation, timeout) {
         $element.addClass('animated ' + animation);
         if (timeout == true) {

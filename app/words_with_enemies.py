@@ -5,7 +5,7 @@ from math import ceil
 
 app = Flask(__name__)
 
-with open('../sowpods.txt', 'r') as f:
+with open('sowpods.txt', 'r') as f:
     word_list = [line.lower().replace('\n', '') for line in f]
 
 
