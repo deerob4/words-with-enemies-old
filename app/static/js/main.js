@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
-    var bgMusic = new buzz.sound('../static/sounds/sand_castles.mp3');
-    bgMusic.play().loop().fadeIn();
+    //var bgMusic = new buzz.sound('../static/sounds/sand_castles.mp3');
+    //bgMusic.play().loop().fadeIn();
 
     var currentWord = [];
     var wordMessage = true;
@@ -29,7 +29,7 @@ $(document).ready(function () {
         $('.setup h1').css('color', gameColour);
         $('.setup p').css('color', mainColour);
         var buttonColour = colorLuminance(mainColour, -0.3);
-        $('.setup-buttons div').css('border-color', buttonColour).css('color', buttonColour);
+        $('.setup-buttons div, .return-button').css('border-color', buttonColour).css('color', buttonColour);
 
         var userColour = randomColor({luminosity: 'light'});
         var computerColour = randomColor({luminosity: 'light', hue: 'red'});
