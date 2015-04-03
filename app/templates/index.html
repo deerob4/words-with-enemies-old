@@ -27,11 +27,11 @@
                         </a>
                     </div>
                 </div>
-                <div class="outer-difficulty-buttons">
+                <div class="outer-difficulty-buttons" ng-controller="GameCtrl as gameCtrl">
                     <div class="setup-buttons">
-                        <div ng-style="{'color': mainCtrl.buttonColour, 'borderColor': mainCtrl.buttonColour}" class="difficulty-button button" id="easy" ng-click="menuCtrl.startGame('easy')">Easy</div>
-                        <div ng-style="{'color': mainCtrl.buttonColour, 'borderColor': mainCtrl.buttonColour}" class="difficulty-button button" id="medium" ng-click="menuCtrl.startGame('medium')">Medium</div>
-                        <div ng-style="{'color': mainCtrl.buttonColour, 'borderColor': mainCtrl.buttonColour}" class="difficulty-button button" id="hard" ng-click="menuCtrl.startGame('hard')">Hard</div>
+                        <div ng-style="{'color': mainCtrl.buttonColour, 'borderColor': mainCtrl.buttonColour}" class="difficulty-button button" id="easy" ng-click="menuCtrl.startGame('easy'); gameCtrl.getRandomLetters()">Easy</div>
+                        <div ng-style="{'color': mainCtrl.buttonColour, 'borderColor': mainCtrl.buttonColour}" class="difficulty-button button" id="medium" ng-click="menuCtrl.startGame('medium'); gameCtrl.getRandomLetters()">Medium</div>
+                        <div ng-style="{'color': mainCtrl.buttonColour, 'borderColor': mainCtrl.buttonColour}" class="difficulty-button button" id="hard" ng-click="menuCtrl.startGame('hard'); gameCtrl.getRandomLetters()">Hard</div>
                     </div>
                 </div>
             </div>
@@ -54,9 +54,9 @@
 </div>
 <div class="game" ng-controller="GameCtrl as gameCtrl">
     <div class="scoreboard">
-        <div class="col-sm-4"><span class="username" ng-style="{'color': mainCtrl.userColour}">You - <span ng-bind="gameCtrl.userScore"></span></span></div>
-        <div class="col-sm-4"><span class="round-number" ng-style="{'color': mainCtrl.mainColour}">Round <span ng-bind="gameCtrl.roundNumber"></span></span></div>
-        <div class="col-sm-4"><span class="computer" ng-style="{'color': mainCtrl.computerColour}">Computer - <span ng-bind="gameCtrl.computerScore"></span></span></div>
+        <div class="col-sm-4"><span class="username" ng-style="{'color': mainCtrl.userColour}">You - [[gameCtrl.userScore]]</span></div>
+        <div class="col-sm-4"><span class="round-number" ng-style="{'color': mainCtrl.mainColour}">Round [[gameCtrl.roundNumber]]</span></div>
+        <div class="col-sm-4"><span class="computer" ng-style="{'color': mainCtrl.computerColour}">Computer - [[gameCtrl.computerScore]]</span></div>
     </div>
     {#    <div class="line scoreboard-line"></div>#}
     <div class="formed-word-wrapper">
@@ -65,23 +65,21 @@
         </ul>
     </div>
     <ul class="computer-word" ng-style="{'backgroundColor': mainCtrl.computerWordBackground, 'borderColor': mainCtrl.computerWordBorder}">
-        <li class="word-message-computer" ng-style="{'color': mainCtrl.computerWordBorder}">Computer's word goes here!</li>
+        <li class="word-message-computer" ng-style="{'color': mainCtrl.computerWordBorder}" ng-bind="gameCtrl.computerMessage"></li>
     </ul>
     <div class="game-buttons">
-        <div class="finished" ng-style="{'backgroundColor': mainCtrl.mainColour, 'borderColor': mainCtrl.gameColour, 'color': mainCtrl.gameColour}">Finished!</div>
-        <div class="vowel" ng-style="{'backgroundColor': mainCtrl.mainColour, 'borderColor': mainCtrl.gameColour, 'color': mainCtrl.gameColour}">Vowel please!</div>
-        <div class="consonant" ng-style="{'backgroundColor': mainCtrl.mainColour, 'borderColor': mainCtrl.gameColour, 'color': mainCtrl.gameColour}">Consonant please!</div>
-        <div class="hints" ng-style="{'backgroundColor': mainCtrl.mainColour, 'borderColor': mainCtrl.gameColour, 'color': mainCtrl.gameColour}">Show hints!</div>
+        <div class="finished" ng-style="{'backgroundColor': mainCtrl.mainColour, 'borderColor': mainCtrl.gameColour, 'color': mainCtrl.gameColour}">I'm finished!</div>
+        <div class="vowel" ng-style="{'backgroundColor': mainCtrl.mainColour, 'borderColor': mainCtrl.gameColour, 'color': mainCtrl.gameColour}" ng-click="gameCtrl.addLetter('vowels')">Vowel please!</div>
+        <div class="consonant" ng-style="{'backgroundColor': mainCtrl.mainColour, 'borderColor': mainCtrl.gameColour, 'color': mainCtrl.gameColour}" ng-click="gameCtrl.addLetter('consonants')">Consonant please!</div>
+        <div class="hints" ng-style="{'backgroundColor': mainCtrl.mainColour, 'borderColor': mainCtrl.gameColour, 'color': mainCtrl.gameColour}" ng-click="gameCtrl.showLetters()">Show hints!</div>
         <div class="change-colours" ng-style="{'backgroundColor': mainCtrl.mainColour, 'borderColor': mainCtrl.gameColour, 'color': mainCtrl.gameColour}" ng-click="mainCtrl.updateColours()">Change colours!</div>
     </div>
     <div class="letter-bank">
         <div class="line" ng-style="{'backgroundColor': mainCtrl.mainColour}"></div>
         <ul class="letters" id="letters">
-            <li class="letter" ng-repeat="letter in gameCtrl.letters" id="[[$index]]" ng-style="{'backgroundColor': letter.mainColour, 'borderColor': letter.borderColour, 'color': letter.textColour}">
-                <span ng-bind="letter.value"></span>
-            </li>
         </ul>
     </div>
+    [[gameCtrl.letters]]
 </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>

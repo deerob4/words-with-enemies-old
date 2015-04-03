@@ -1,7 +1,7 @@
 //$(document).ready(function () {
 //
-   var bgMusic = new buzz.sound('../static/sounds/sand_castles.mp3');
-   bgMusic.play().loop().fadeIn();
+var bgMusic = new buzz.sound('../static/sounds/sand_castles.mp3');
+bgMusic.play().loop().fadeIn();
 //
 //    var currentWord = [];
 //        wordMessage = true;
@@ -16,42 +16,42 @@
 //            ghostClass: 'letter-ghost'
 //        });
 //
-    // function calculateColours() {
-    //     var colourChoices = ['blue', 'red', 'orange', 'purple'];
-    //     var mainColour = randomColor({
-    //         luminosity: 'light',
-    //         hue: colourChoices[Math.floor(Math.random() * colourChoices.length)]
-    //     });
-    //     console.log('Main colour chosen.');
-    //     var gameColour = colorLuminance(mainColour, -0.2);
-    //     console.log('Game colour chosen.');
+// function calculateColours() {
+//     var colourChoices = ['blue', 'red', 'orange', 'purple'];
+//     var mainColour = randomColor({
+//         luminosity: 'light',
+//         hue: colourChoices[Math.floor(Math.random() * colourChoices.length)]
+//     });
+//     console.log('Main colour chosen.');
+//     var gameColour = colorLuminance(mainColour, -0.2);
+//     console.log('Game colour chosen.');
 
-    //     $('.setup h1').css('color', gameColour);
-    //     $('.setup p').css('color', mainColour);
-    //     var buttonColour = colorLuminance(mainColour, -0.3);
-    //     $('.setup-buttons div, .return-button').css('border-color', buttonColour).css('color', buttonColour);
+//     $('.setup h1').css('color', gameColour);
+//     $('.setup p').css('color', mainColour);
+//     var buttonColour = colorLuminance(mainColour, -0.3);
+//     $('.setup-buttons div, .return-button').css('border-color', buttonColour).css('color', buttonColour);
 
-    //     var userColour = randomColor({luminosity: 'light'});
-    //     var computerColour = randomColor({luminosity: 'light', hue: 'red'});
+//     var userColour = randomColor({luminosity: 'light'});
+//     var computerColour = randomColor({luminosity: 'light', hue: 'red'});
 
-    //     $('.game').css('border-color', mainColour);
+//     $('.game').css('border-color', mainColour);
 
-    //     $('.line').css('background-color', mainColour);
-    //     $('.username').css('color', userColour);
-    //     $('.round-number').css('color', mainColour);
-    //     $('.computer').css('color', computerColour);
-    //     $('.game-buttons div').css('background-color', mainColour).css('border-color', gameColour).css('color', gameColour);
+//     $('.line').css('background-color', mainColour);
+//     $('.username').css('color', userColour);
+//     $('.round-number').css('color', mainColour);
+//     $('.computer').css('color', computerColour);
+//     $('.game-buttons div').css('background-color', mainColour).css('border-color', gameColour).css('color', gameColour);
 
-    //     var userWordBackground = colorLuminance(userColour, 0.1);
-    //     var userWordBorder = colorLuminance(userWordBackground, -0.2);
-    //     $('.formed-word').css('background-color', userWordBackground).css('border-color', userWordBorder);
-    //     $('.word-message').css('color', userWordBorder);
+//     var userWordBackground = colorLuminance(userColour, 0.1);
+//     var userWordBorder = colorLuminance(userWordBackground, -0.2);
+//     $('.formed-word').css('background-color', userWordBackground).css('border-color', userWordBorder);
+//     $('.word-message').css('color', userWordBorder);
 
-    //     var computerWordBackground = colorLuminance(computerColour, 0.1);
-    //     var computerWordBorder = colorLuminance(computerWordBackground, -0.2);
-    //     $('.computer-word').css('background-color', computerWordBackground).css('border-color', computerWordBorder);
-    //     $('.word-message-computer').css('color', computerWordBorder);
-    // }
+//     var computerWordBackground = colorLuminance(computerColour, 0.1);
+//     var computerWordBorder = colorLuminance(computerWordBackground, -0.2);
+//     $('.computer-word').css('background-color', computerWordBackground).css('border-color', computerWordBorder);
+//     $('.word-message-computer').css('color', computerWordBorder);
+// }
 //
 //    function mainMenu() {
 //        $('.instructions-button').click(function () {
@@ -93,7 +93,7 @@
 //        for (var i = 0; i <= letterset.length - 1; i++) {
 //            var mainColour = randomColor({luminosity: 'light'});
 //            var borderColour = colorLuminance(mainColour, -0.2);
-           // $('.letters').append('<li class="letter" id=' + i + '" style="background-color: ' + mainColour + '; border: 3px solid ' + borderColour + '; color: ' + colorLuminance(borderColour, -0.2) + '">' + letterset[i] + '</li>');
+// $('.letters').append('<li class="letter" id=' + i + '" style="background-color: ' + mainColour + '; border: 3px solid ' + borderColour + '; color: ' + colorLuminance(borderColour, -0.2) + '">' + letterset[i] + '</li>');
 //        }
 //    }
 //
@@ -166,24 +166,24 @@
 //        $letter.remove();
 //    }
 //
-   function colorLuminance(hex, lum) {
-       // validate hex string
-       hex = String(hex).replace(/[^0-9a-f]/gi, '');
-       if (hex.length < 6) {
-           hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-       }
-       lum = lum || 0;
+function colorLuminance(hex, lum) {
+    // validate hex string
+    hex = String(hex).replace(/[^0-9a-f]/gi, '');
+    if (hex.length < 6) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    lum = lum || 0;
 
-       // convert to decimal and change luminosity
-       var rgb = "#", c, i;
-       for (i = 0; i < 3; i++) {
-           c = parseInt(hex.substr(i * 2, 2), 16);
-           c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
-           rgb += ("00" + c).substr(c.length);
-       }
+    // convert to decimal and change luminosity
+    var rgb = "#", c, i;
+    for (i = 0; i < 3; i++) {
+        c = parseInt(hex.substr(i * 2, 2), 16);
+        c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
+        rgb += ("00" + c).substr(c.length);
+    }
 
-       return rgb;
-   }
+    return rgb;
+}
 //
 //    function genericAnimation($element, animation, timeout) {
 //        $element.addClass('animated ' + animation);
@@ -224,27 +224,27 @@
 //
 //    $('.change-colours').click(function () {
 //        calculateColours();
-       // $('.letters .letter').each(function () {
-       //     var background = randomColor({luminosity: 'light'});
-       //     var border = colorLuminance(background, -0.2);
-       //     $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
-       // });
-       // $('.formed-word .letter').each(function () {
-       //     var background = randomColor({luminosity: 'light'});
-       //     var border = colorLuminance(background, -0.2);
-       //     $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
-       // });
-       // $('.computer-word .letter').each(function () {
-       //     var background = randomColor({luminosity: 'light'});
-       //     var border = colorLuminance(background, -0.2);
-       //     $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
-       // });
+// $('.letters .letter').each(function () {
+//     var background = randomColor({luminosity: 'light'});
+//     var border = colorLuminance(background, -0.2);
+//     $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
+// });
+// $('.formed-word .letter').each(function () {
+//     var background = randomColor({luminosity: 'light'});
+//     var border = colorLuminance(background, -0.2);
+//     $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
+// });
+// $('.computer-word .letter').each(function () {
+//     var background = randomColor({luminosity: 'light'});
+//     var border = colorLuminance(background, -0.2);
+//     $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
+// });
 //    });
 //
 //    $('.vowel').click(function () {
 //        if (lettersAdded < 2) {
-           var vowels = ['a', 'e', 'i', 'o', 'u'];
-           var letterset = [vowels[Math.floor(Math.random() * vowels.length)]];
+//var vowels = ['a', 'e', 'i', 'o', 'u'];
+//var letterset = [vowels[Math.floor(Math.random() * vowels.length)]];
 //            displayLetters(letterset);
 //            lettersAdded++;
 //        } else {
@@ -272,42 +272,45 @@
 
 var module = angular.module('wordsWithEnemies', []);
 
-module.config(['$interpolateProvider', function($interpolateProvider) {
+module.config(['$interpolateProvider', function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 }]);
 
-module.controller('MainCtrl', [function(){
+module.controller('MainCtrl', [function () {
     var self = this,
         colourChoices = ['blue', 'red', 'orange', 'purple'];
 
-    self.updateColours = function() {
-        self.mainColour = randomColor({luminosity: 'light', hue: colourChoices[Math.floor(Math.random() * colourChoices.length)]}),
-        self.gameColour = colorLuminance(self.mainColour, -0.2),
-        self.buttonColour = colorLuminance(self.mainColour, -0.3),
-        self.userColour = randomColor({luminosity: 'light'}),
-        self.userWordBackground = colorLuminance(self.userColour, 0.1),
-        self.userWordBorder = colorLuminance(self.userWordBackground, -0.2),
-        self.computerColour = randomColor({luminosity: 'light', hue:'red'}),
-        self.computerWordBackground = colorLuminance(self.computerColour, 0.1),
+    self.updateColours = function () {
+        self.mainColour = randomColor({
+            luminosity: 'light',
+            hue: colourChoices[Math.floor(Math.random() * colourChoices.length)]
+        });
+        self.gameColour = colorLuminance(self.mainColour, -0.2);
+        self.buttonColour = colorLuminance(self.mainColour, -0.3);
+        self.userColour = randomColor({luminosity: 'light'});
+        self.userWordBackground = colorLuminance(self.userColour, 0.1);
+        self.userWordBorder = colorLuminance(self.userWordBackground, -0.2);
+        self.computerColour = randomColor({luminosity: 'light', hue: 'red'});
+        self.computerWordBackground = colorLuminance(self.computerColour, 0.1);
         self.computerWordBorder = colorLuminance(self.computerWordBackground, -0.2);
 
         $('.letters .letter').each(function () {
-           var background = randomColor({luminosity: 'light'});
-           var border = colorLuminance(background, -0.2);
-           $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
-       });
-       $('.formed-word .letter').each(function () {
-           var background = randomColor({luminosity: 'light'});
-           var border = colorLuminance(background, -0.2);
-           $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
-       });
-       $('.computer-word .letter').each(function () {
-           var background = randomColor({luminosity: 'light'});
-           var border = colorLuminance(background, -0.2);
-           $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
-       });
-    }
+            var background = randomColor({luminosity: 'light'});
+            var border = colorLuminance(background, -0.2);
+            $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
+        });
+        $('.formed-word .letter').each(function () {
+            var background = randomColor({luminosity: 'light'});
+            var border = colorLuminance(background, -0.2);
+            $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
+        });
+        $('.computer-word .letter').each(function () {
+            var background = randomColor({luminosity: 'light'});
+            var border = colorLuminance(background, -0.2);
+            $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
+        });
+    };
 
     self.updateColours();
 }]);
@@ -324,49 +327,60 @@ module.controller('MenuCtrl', ['menuAnimateService', 'difficultyService', functi
         menuAnimateService.animateMenu('main-buttons', 'bounceOutRight', 'instructions', 'bounceInLeft');
     };
     self.returnToMenu = function () {
-        console.log('wee');
         menuAnimateService.animateMenu('instructions', 'bounceOutLeft', 'main-buttons', 'bounceInRight');
     };
-    self.showDifficultyButtons = function() {
+    self.showDifficultyButtons = function () {
         menuAnimateService.animateMenu('outer-main-buttons', 'bounceOutLeft', 'outer-difficulty-buttons', 'bounceInRight');
     };
-    self.startGame = function(difficulty) {
+    self.startGame = function (difficulty) {
         difficultyService.setDifficulty(difficulty);
         menuAnimateService.animateMenu('setup', 'bounceOutLeft', 'game', 'bounceInRight');
     }
 }]);
 
-module.controller('GameCtrl', ['difficultyService', '$http', function(difficultyService, $http) {
+module.controller('GameCtrl', ['difficultyService', 'storeLettersService', '$http', function (difficultyService, storeLettersService, $http) {
     var self = this;
+    self.letters = [];
     self.roundNumber = 1;
     self.userScore = 0;
     self.computerScore = 0;
-    self.extraLetters = 0;
+    self.extraLetters = 3;
     self.userMessage = 'Make a word with the letters!';
-    
+    self.computerMessage = 'Computer\'s word goes here!';
 
-    self.addVowel = function() {
-        var vowels = ['a', 'e', 'i', 'o', 'u'],
-            letterset = [vowels[Math.floor(Math.random() * vowels.length)]];
-    }
+    self.addLetter = function (type) {
+        var alphabet = {
+                vowels: ['a', 'e', 'i', 'o', 'u'],
+                consonants: ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y']
+            },
+            letter = new LetterBlock(alphabet[type][Math.floor(Math.random() * alphabet[type].length)]);
 
-    self.getRandomLetters = function() {
-        $http.get('/letters/10').then(function(response) {
-            self.showLetters(response.data)
-        }, function(error) {
+        if (self.extraLetters > 0) {
+            $('.letters').append('<li class="letter" style="background-color: ' + letter.bgColour + '; border-color: ' + letter.borderColour + '; color: ' + letter.textColour + '">' + letter.value + '</li>');
+            self.extraLetters -= 1;
+        }
+    };
+
+    self.getRandomLetters = function () {
+        var difficultyMap = {'easy': 12, 'medium': 10, 'hard': 8};
+        $http.post('/letters/' + difficultyMap[difficultyService.getDifficulty()]).then(function (response) {
+            self.createLetterBlocks(response.data)
+        }, function () {
             console.log('Error while fetching letters.');
         });
     };
-    
-    self.showLetters = function(randomLetters) {
-        self.letters = [];
+
+    self.createLetterBlocks = function (randomLetters) {
         for (var i = 0; i < randomLetters.length; i++) {
-            var mainColour = randomColor({luminosity: 'light'}), borderColour = colorLuminance(mainColour, -0.2);
-            self.letters[i] = {value: randomLetters[i], mainColour: mainColour, borderColour: borderColour, textColour: colorLuminance(borderColour, -0.2)};
-        };
+            var letter = new LetterBlock(randomLetters[i]);
+            storeLettersService.addLetter(letter);
+            $('.letters').append('<li class="letter" style="background-color: ' + letter.bgColour + '; border-color: ' + letter.borderColour + '; color: ' + letter.textColour + '">' + letter.value + '</li>');
+        }
     };
 
-    self.getRandomLetters();
+    self.showLetters = function () {
+        console.log(storeLettersService.getLetters());
+    };
 }]);
 
 module.service('menuAnimateService', [function () {
@@ -377,17 +391,36 @@ module.service('menuAnimateService', [function () {
             $('.' + hideElement).css('display', 'none').removeClass('animated ' + removeAnimation);
             $('.' + showElement).css('display', 'block').addClass('animated ' + addAnimation);
         }, 500);
-    }
+    };
 }]);
 
-module.service('difficultyService', [function() {
-    this.gameDifficulty = 'medium';
+module.service('difficultyService', [function () {
+    this.gameDifficulty = 'hard';
 
-    this.setDifficulty = function(difficulty) {
+    this.setDifficulty = function (difficulty) {
         this.gameDifficulty = difficulty;
     };
 
-    this.getDifficulty = function() {
+    this.getDifficulty = function () {
         return this.gameDifficulty;
     };
 }]);
+
+module.service('storeLettersService', [function () {
+    this.letterObjects = [];
+
+    this.addLetter = function (letterObject) {
+        this.letterObjects.push(letterObject);
+    };
+
+    this.getLetters = function () {
+        return this.letterObjects;
+    }
+}]);
+
+var LetterBlock = function (letter) {
+    this.value = letter;
+    this.bgColour = randomColor({luminosity: 'light'});
+    this.borderColour = colorLuminance(this.bgColour, -0.2);
+    this.textColour = colorLuminance(this.borderColour, -0.2);
+};

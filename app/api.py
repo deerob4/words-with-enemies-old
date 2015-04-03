@@ -12,7 +12,7 @@ with open('sowpods.txt', 'r') as f:
 
 
 class RandomLetters(Resource):
-    def get(self, n):
+    def post(self, n):
         vowels = 'aeiou'
         consonants = 'bcdfghjklmnpqrstvwxyz'
         num_vowels = n // 3
@@ -21,7 +21,7 @@ class RandomLetters(Resource):
 
 
 class Words(Resource):
-    def get(self, letters):
+    def post(self, letters):
         found_words = []
         for word in word_list:
             word_as_list = list(word)
