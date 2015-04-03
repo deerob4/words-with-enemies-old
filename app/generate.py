@@ -2,7 +2,7 @@ from string import ascii_lowercase
 from random import randint, choice
 from getpass import getuser
 
-with open('../sowpods.txt', 'r') as f:
+with open('sowpods.txt', 'r') as f:
     word_list = [line.lower().replace('\n', '') for line in f]
 
 username = getuser().title()
@@ -131,3 +131,7 @@ def random_letters(n):
     num_vowels = n // 3
     lettersets = [vowels] * num_vowels + [consonants] * (n - num_vowels)
     return [letter for letterset in lettersets for letter in choice(letterset)]
+
+
+if __name__ == '__main__':
+    game('easy')
