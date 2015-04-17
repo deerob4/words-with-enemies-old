@@ -9,12 +9,12 @@ bgMusic.play().loop().fadeIn();
 //        difficulty = 'medium';
 //
 //    var letters = document.getElementById('formed-word');
-//        sortable = new Sortable(letters, {
-//            sort: true,
-//            draggable: '.letter',
-//            animation: 200,
-//            ghostClass: 'letter-ghost'
-//        });
+       // sortable = new Sortable(letters, {
+       //     sort: true,
+       //     draggable: '.letter',
+       //     animation: 200,
+       //     ghostClass: 'letter-ghost'
+       // });
 //
 // function calculateColours() {
 //     var colourChoices = ['blue', 'red', 'orange', 'purple'];
@@ -270,14 +270,17 @@ function colorLuminance(hex, lum) {
 //
 //});
 
-var module = angular.module('wordsWithEnemies', []);
+var module = angular.module('wordsWithEnemies', ['ng-sortable']),
+    letterListLength = 0;
 
+// Sets the AngularJS template symbols to prevent conflict with Jinja2.
 module.config(['$interpolateProvider', function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 }]);
 
-module.controller('MainCtrl', [function () {
+// Sets and mofifies the colour of the dynamic elements.
+module.controller('MainCtrl', ['storeLettersService', function (storeLettersService) {
     var self = this,
         colourChoices = ['blue', 'red', 'orange', 'purple'];
 
@@ -295,96 +298,109 @@ module.controller('MainCtrl', [function () {
         self.computerWordBackground = colorLuminance(self.computerColour, 0.1);
         self.computerWordBorder = colorLuminance(self.computerWordBackground, -0.2);
 
-        $('.letters .letter').each(function () {
-            var background = randomColor({luminosity: 'light'});
-            var border = colorLuminance(background, -0.2);
-            $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
-        });
-        $('.formed-word .letter').each(function () {
-            var background = randomColor({luminosity: 'light'});
-            var border = colorLuminance(background, -0.2);
-            $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
-        });
-        $('.computer-word .letter').each(function () {
-            var background = randomColor({luminosity: 'light'});
-            var border = colorLuminance(background, -0.2);
-            $(this).css('background-color', background).css('border-color', border).css('color', colorLuminance(border, -0.2));
-        });
+        var letterBank = storeLettersService.getLetterBank(),
+            formedWord = storeLettersService.getFormedWord();
+
+        // Loops through every letter and calls the changeColours() prototype function.
+        for (var i = 0; i < letterBank.length; i++) {
+            letterBank[i].changeColours();
+        }
+
+        for (var i = 0; i < formedWord.length; i++) {
+            formedWord[i].changeColours();
+        }
+
     };
 
     self.updateColours();
 }]);
 
-module.controller('MenuCtrl', ['menuAnimateService', 'difficultyService', function (menuAnimateService, difficultyService) {
+// Controls the animations in the menu.
+module.controller('MenuCtrl', ['menuAnimateService', function (menuAnimateService) {
     var self = this;
 
+    // Rotates the different elements in the menu.
     setTimeout(function () {
         $('.setup-text, .setup-buttons').addClass('rotate');
         $('.setup-buttons').removeClass('animated bounceInUp')
     }, 1000);
 
+    // Animates the instructions button.
     self.showInstructions = function () {
         menuAnimateService.animateMenu('main-buttons', 'bounceOutRight', 'instructions', 'bounceInLeft');
     };
+
+    // Animates the menu return button.
     self.returnToMenu = function () {
         menuAnimateService.animateMenu('instructions', 'bounceOutLeft', 'main-buttons', 'bounceInRight');
     };
-    self.showDifficultyButtons = function () {
-        menuAnimateService.animateMenu('outer-main-buttons', 'bounceOutLeft', 'outer-difficulty-buttons', 'bounceInRight');
-    };
-    self.startGame = function (difficulty) {
-        difficultyService.setDifficulty(difficulty);
+
+    // Animates the start game button.
+    self.startGame = function () {
         menuAnimateService.animateMenu('setup', 'bounceOutLeft', 'game', 'bounceInRight');
     }
 }]);
 
-module.controller('GameCtrl', ['difficultyService', 'storeLettersService', '$http', function (difficultyService, storeLettersService, $http) {
+module.controller('GameCtrl', ['storeLettersService', '$http', function (storeLettersService, $http) {
     var self = this;
+
+    // Sets all the game board elements
     self.letters = [];
+    self.formedWord = [];
     self.roundNumber = 1;
     self.userScore = 0;
     self.computerScore = 0;
-    self.extraLetters = 3;
+    self.extraLetters = 5;
     self.userMessage = 'Make a word with the letters!';
     self.computerMessage = 'Computer\'s word goes here!';
 
-    self.addLetter = function (type) {
+    // Adds an extra letter to the letter bank.
+    self.addNewLetter = function (type) {
         var alphabet = {
                 vowels: ['a', 'e', 'i', 'o', 'u'],
                 consonants: ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y']
             },
-            letter = new LetterBlock(alphabet[type][Math.floor(Math.random() * alphabet[type].length)]);
+            letter = new LetterBlock(alphabet[type][Math.floor(Math.random() * alphabet[type].length)]); // Creates a new letter instance.
 
         if (self.extraLetters > 0) {
-            $('.letters').append('<li class="letter" style="background-color: ' + letter.bgColour + '; border-color: ' + letter.borderColour + '; color: ' + letter.textColour + '">' + letter.value + '</li>');
+            storeLettersService.addToLetterBank(letter);
             self.extraLetters -= 1;
         }
     };
 
+    // Requests 10 random letters from the API.
     self.getRandomLetters = function () {
-        var difficultyMap = {'easy': 12, 'medium': 10, 'hard': 8};
-        $http.post('/letters/' + difficultyMap[difficultyService.getDifficulty()]).then(function (response) {
+        $http.post('/letters/10').then(function (response) {
             self.createLetterBlocks(response.data)
         }, function () {
             console.log('Error while fetching letters.');
         });
     };
 
+    // Creates the actual letter blocks for the letter bank.
     self.createLetterBlocks = function (randomLetters) {
         for (var i = 0; i < randomLetters.length; i++) {
             var letter = new LetterBlock(randomLetters[i]);
-            storeLettersService.addLetter(letter);
-            $('.letters').append('<li class="letter" style="background-color: ' + letter.bgColour + '; border-color: ' + letter.borderColour + '; color: ' + letter.textColour + '">' + letter.value + '</li>');
+            storeLettersService.addToLetterBank(letter);
         }
     };
 
-    self.showLetters = function () {
-        console.log(storeLettersService.getLetters());
+    // Adds the letter to the formed word area, and removes it from the letter bank. At least, it should do; it's not working yet.
+    self.addLetterToWord = function (id) {
+        var letterToAdd = storeLettersService.getLetterBank()[id - 1];
+        $('.word-message').hide();
+        storeLettersService.addToFormedWord(letterToAdd);
+        // storeLettersService.removeFromLetterBank(id);
     };
+
+    self.getRandomLetters();
+    self.letters = storeLettersService.getLetterBank();
+    self.formedWord = storeLettersService.getFormedWord();
 }]);
 
 module.service('menuAnimateService', [function () {
     var self = this;
+
     self.animateMenu = function (hideElement, removeAnimation, showElement, addAnimation) {
         $('.' + hideElement).addClass('animated ' + removeAnimation);
         setTimeout(function () {
@@ -394,32 +410,54 @@ module.service('menuAnimateService', [function () {
     };
 }]);
 
-module.service('difficultyService', [function () {
-    this.gameDifficulty = 'hard';
-
-    this.setDifficulty = function (difficulty) {
-        this.gameDifficulty = difficulty;
-    };
-
-    this.getDifficulty = function () {
-        return this.gameDifficulty;
-    };
-}]);
-
+// Service for reading and updating the numerous lists of letters throughout the game.
 module.service('storeLettersService', [function () {
-    this.letterObjects = [];
+    var self = this;
 
-    this.addLetter = function (letterObject) {
-        this.letterObjects.push(letterObject);
+    self.letterObjects = {
+        letterBank: [],
+        formedWord: [],
+        computerWord: []
     };
 
-    this.getLetters = function () {
-        return this.letterObjects;
-    }
+    // Adds letter objects to the letter banks.
+    self.addToLetterBank = function (letterObject) {
+        self.letterObjects.letterBank.push(letterObject);
+        letterListLength = self.letterObjects.letterBank.length;
+    };
+
+    // Removes letters from the letter bank. Doesn't work.
+    self.removeFromLetterBank = function (letterObject) {
+        var result = $.grep(self.getLetterBank(), function(e) { return e.id === letterObject.id });
+    };
+
+    // Returns the letter bank.
+    self.getLetterBank = function () {
+        return self.letterObjects.letterBank;
+    };
+
+    // Adds letter objects to the formed word array.
+    self.addToFormedWord = function (letterObject) {
+        self.letterObjects.formedWord.push(letterObject);
+    };
+
+    // Returns the formed word.
+    self.getFormedWord = function () {
+        return self.letterObjects.formedWord;
+    };
 }]);
 
+// Letter block class that represents every individual letter; they can be tracked using their ID.
 var LetterBlock = function (letter) {
+    this.id = letterListLength + 1;
     this.value = letter;
+    this.bgColour = randomColor({luminosity: 'light'});
+    this.borderColour = colorLuminance(this.bgColour, -0.2);
+    this.textColour = colorLuminance(this.borderColour, -0.2);
+};
+
+// LetterBlock method that modifies the colours of the individual letter block.
+LetterBlock.prototype.changeColours = function () {
     this.bgColour = randomColor({luminosity: 'light'});
     this.borderColour = colorLuminance(this.bgColour, -0.2);
     this.textColour = colorLuminance(this.borderColour, -0.2);
