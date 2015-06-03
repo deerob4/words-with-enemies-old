@@ -1,23 +1,48 @@
-from flask import Flask, render_template, jsonify, request
-from getpass import getuser
+from flask import Flask, send_from_directory, request, jsonify
+from flask.ext.restful import Resource, Api
+
 from random import choice
-from math import ceil
 
 app = Flask(__name__)
+api = Api(app)
 
-with open('sowpods.txt', 'r') as f:
+# Sets the word_list variable to a lowercase list of all the words in sowpods.txt
+with open('static/sowpods.txt', 'r') as f:
     word_list = [line.lower().replace('\n', '') for line in f]
 
 
-def check_dictionary(user_word):
-    for word in word_list:
-        if word == user_word:
-            return True
-    else:
-        return False
+@app.route('/')
+def index():
+    return send_from_directory('static', 'index.html')
 
 
-def generate_words(letters, difficulty):
+@app.route('/api/letters')
+def random_letters():
+    n = int(request.args.get('quantity'))
+    vowels = 'aeiou'
+    consonants = 'bcdfghjklmnpqrstvwxyz'
+    num_vowels = n // 3
+
+    # Constructs a list containing a fair set of the vowel string and consonants string, with a bias towards consanants.
+    lettersets = [vowels] * num_vowels + [consonants] * (n - num_vowels)
+
+    # Returns a list of random choices from the above.
+    return jsonify({'letters': [letter for letterset in lettersets for letter in choice(letterset)]})
+
+
+@app.route('/api/words')
+def find_words():
+    """Creates a list of possible words out a list of letters.
+
+    This is a fairly basic linear search algorithm that goes through each 
+    word in the list, and compares each letter in the word against the letters 
+    in the given list. If the letter is found, it is taken away from the word; 
+    therefore, if, once all the letters have been checked, the length of the
+    word is 0, the word must be possible to make out of the letters, so it is added 
+    to the list of found words.
+    """
+    letters = request.args.get('letters')
+
     found_words = []
     for word in word_list:
         word_as_list = list(word)
@@ -25,60 +50,9 @@ def generate_words(letters, difficulty):
             if letter in word_as_list:
                 word_as_list.remove(letter)
         if len(word_as_list) == 0:
-            if difficulty != 'easy':
-                if len(word) > 4:
-                    found_words.append(word)
-            else:
-                if len(word) > 3:
-                    found_words.append(word)
-    print('AI letters were:', ''.join(letters))
-    print('Possible words were:', ' '.join(found_words))
-    return found_words
+            found_words.append(word)
 
-
-def random_letters(n):
-    vowels = 'aeiou'
-    consonants = 'bcdfghjklmnpqrstvwxyz'
-    num_vowels = n // 3
-    lettersets = [vowels] * num_vowels + [consonants] * (n - num_vowels)
-    return [letter for letterset in lettersets for letter in choice(letterset)]
-
-
-@app.route('/')
-def index():
-    return render_template('index.html', username=getuser().title())
-
-
-@app.route('/_ajax/random_letters', methods=['POST'])
-def get_letters():
-    difficulty_map = {'easy': 12, 'medium': 10, 'hard': 8}
-    difficulty = request.get_data().decode("utf-8")
-    return jsonify(letterset=random_letters(difficulty_map[difficulty]))
-
-
-@app.route('/_ajax/check_dictionary', methods=['POST'])
-def check_dictionary():
-    user_word = request.get_data().decode("utf-8").replace(',', '')
-    print(user_word)
-    for word in word_list:
-        if word == user_word:
-            return 'valid'
-    else:
-        return 'invalid'
-
-
-@app.route('/_ajax/generate_computer_word', methods=['POST'])
-def generate_computer_word():
-    difficulty_map = {'easy': 8, 'medium': 10, 'hard': 12}
-    difficulty = request.get_data().decode("utf-8")
-    letters = random_letters(difficulty_map[difficulty])
-    words = generate_words(letters, difficulty)
-    if difficulty == "easy":
-        return min(words, key=len)
-    elif difficulty == "medium":
-        return words[ceil(len(words) / 2)]
-    else:
-        return max(words, key=len)
+    return jsonify({'words': sorted(found_words, key=len), 'length': len(found_words)})
 
 
 if __name__ == '__main__':

@@ -1,0 +1,38 @@
+{
+  "name": "Words With Enemies",
+  "version": "2.0",
+  "homepage": "https://github.com/deerob4/words-with-enemies",
+  "description": "A word guessing game with a twist.",
+  "main": "words_with_enemies.py",
+  "keywords": [
+    "python",
+    "javascript",
+    "words",
+    "angular",
+    "guessing",
+    "puzzle"
+  ],
+  "authors": [
+    "Dee Roberts"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "angular": "~1.4.0"
+  },
+  "dependencies": {
+    "angular": "~1.4.0",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.4",
+    "buzz": "~1.1.10",
+    "randomcolor": "~0.2.0",
+    "animate.css": "~3.3.0",
+    "Sortable": "~1.2.0"
+  }
+}
