@@ -1,5 +1,5 @@
 # Words With Enemies
-A word guessing game.
+A word guessing game.No where near finished. 
 
 ##To install:
 Installation is very simple:
