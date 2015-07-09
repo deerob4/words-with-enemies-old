@@ -28,6 +28,9 @@ module.controller('MainCtrl', ['storeLettersService', function (storeLettersServ
     var self = this,
         colourChoices = ['blue', 'red', 'orange', 'purple'];
 
+    /**
+     * Randomises every coloured element.
+     */
     self.updateColours = function () {
         self.mainColour = randomColor({
             luminosity: 'light',
@@ -66,7 +69,7 @@ module.controller('MenuCtrl', ['menuAnimateService', function (menuAnimateServic
     // Rotates the different elements in the menu.
     setTimeout(function () {
         $('.setup-text, .setup-buttons').addClass('rotate');
-        $('.setup-buttons').removeClass('animated bounceInUp')
+        $('.setup-buttons').removeClass('animated bounceInUp');
     }, 1000);
 
     // Animates the instructions button.
@@ -82,7 +85,7 @@ module.controller('MenuCtrl', ['menuAnimateService', function (menuAnimateServic
     // Animates the start game button.
     self.startGame = function () {
         menuAnimateService.animateMenu('setup', 'bounceOutLeft', 'game', 'bounceInRight');
-    }
+    };
 }]);
 
 module.controller('GameCtrl', ['storeLettersService', '$http', function (storeLettersService, $http) {
@@ -98,7 +101,10 @@ module.controller('GameCtrl', ['storeLettersService', '$http', function (storeLe
     self.userMessage = 'Make a word with the letters!';
     self.computerMessage = 'Computer\'s word goes here!';
 
-    // Adds an extra letter to the letter bank.
+    /**
+     * Adds an extra letter to the letter bank.
+     * @param {[type]} type [description]
+     */
     self.addNewLetter = function (type) {
         var alphabet = {
                 vowels: ['a', 'e', 'i', 'o', 'u'],
@@ -112,16 +118,23 @@ module.controller('GameCtrl', ['storeLettersService', '$http', function (storeLe
         }
     };
 
-    // Requests 10 random letters from the API.
+    /**
+     * Requests 10 random letters from the API.
+     * @return {function} createLetterBlocks()
+     */
     self.getRandomLetters = function () {
-        $http.post('/letters/10').then(function (response) {
-            self.createLetterBlocks(response.data)
+        $http.get('/api/letters?quantity=10').then(function (response) {
+            self.createLetterBlocks(response.data.letters);
         }, function () {
             console.log('Error while fetching letters.');
         });
     };
 
-    // Creates the actual letter blocks for the letter bank.
+    /**
+     * Creates the actual letter blocks for the letter bank.
+     * @param  {array} randomLetters An array of random letters.
+     * @return {function}               addToLetterBank()
+     */
     self.createLetterBlocks = function (randomLetters) {
         for (var i = 0; i < randomLetters.length; i++) {
             var letter = new LetterBlock(randomLetters[i]);
@@ -175,9 +188,9 @@ module.service('storeLettersService', [function () {
         for (var i = 0; i < self.letterObjects.letterBank.length; i++) {
             console.log(letterObject);
             if (self.letterObjects.letterBank[i].id == letterObject) {
-                self.letterObjects.letterBank.splice(letterObject, 1)
+                self.letterObjects.letterBank.splice(letterObject, 1);
             }
-        };
+        }
     };
 
     // Returns the letter bank.
