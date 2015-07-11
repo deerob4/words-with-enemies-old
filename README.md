@@ -1,5 +1,5 @@
 # Words With Enemies
-A word guessing game. No where near finished. Might rewrite in JS.
+A word guessing game. No where near finished. Will rewrite in JS.
 
 ##To install:
 Installation is very simple:
