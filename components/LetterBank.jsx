@@ -24,14 +24,14 @@ var LetterBank = React.createClass({
 	},
 
 	render: function() {
+		var letters = this.state.letters.map(function(value) {
+			return ( <Letter key={value} value={value} /> )
+		});
+
 		return (
 			<div className="letter-bank">
 				<ul className="letters">
-					{
-						this.state.letters.map(function(value) {
-							return <Letter key={value} value={value} />
-						})
-					}
+					{letters}
 				</ul>
 			</div>
 		);
