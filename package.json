@@ -8,12 +8,12 @@
     "express": "^4.13.1",
     "randomcolor": "^0.3.0",
     "react": "^0.13.3",
-    "superagent": "^1.2.0",
+    "superagent": "^1.2.0"
   },
   "devDependencies": {
     "vinyl-source-stream": "^1.1.0",
     "reactify": "^1.1.1",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
