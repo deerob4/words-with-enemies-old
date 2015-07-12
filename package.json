@@ -1,0 +1,38 @@
+{
+  "name": "words-with-enemies",
+  "version": "1.0.0",
+  "description": "A fun word making game.",
+  "main": "app.js",
+  "dependencies": {
+    "browserify": "^10.2.6",
+    "express": "^4.13.1",
+    "randomcolor": "^0.3.0",
+    "react": "^0.13.3",
+    "superagent": "^1.2.0",
+  },
+  "devDependencies": {
+    "vinyl-source-stream": "^1.1.0",
+    "reactify": "^1.1.1",
+    "gulp": "^3.9.0",
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/deerob4/words-with-enemies.git"
+  },
+  "keywords": [
+    "game",
+    "puzzle",
+    "letters",
+    "random",
+    "colours"
+  ],
+  "author": "Dee Roberts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deerob4/words-with-enemies/issues"
+  },
+  "homepage": "https://github.com/deerob4/words-with-enemies#readme"
+}

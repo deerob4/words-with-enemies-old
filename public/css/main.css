@@ -1,0 +1,281 @@
+h1, h2, p {
+    font-family: Dosis, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 80px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 50px;
+}
+
+p {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/*------------------------------------*
+/          MAIN MENU STYLES           /
+*------------------------------------*/
+.setup {
+    width: 100%;
+    height: 290px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.setup-buttons, .return-button {
+    margin-top: 10px;
+    margin-left: 300px;
+    position: relative;
+}
+
+.menu-button {
+    display: inline-block;
+    font-family: Dosis, sans-serif;
+    font-size: 24px;
+    margin-left: 25px;
+    border: 2px solid;
+    border-radius: 100px;
+    padding: 10px;
+    cursor: pointer;
+    width: 145px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.menu-button:hover {
+    border: 3px solid;
+    transform: scale(1.3);
+}
+
+.play-button:hover {
+    background-color: #69ea9b;
+    border-color: #54bb7c !important;
+    color: #3c7f56 !important;
+}
+
+.instructions-button:hover, .return-button:hover {
+    background-color: #a8e6f4;
+    border-color: #86b8c3 !important;
+    color: #49758c !important;
+}
+
+.source-button:hover {
+    background-color: #fce1a4;
+    border-color: #cab483 !important;
+    color: #9d9362 !important;
+}
+
+.return-button {
+    margin-left: 500px;
+}
+
+.menu-button:active {
+    transform: scale(0.7);
+}
+
+.rotate {
+    -webkit-animation: rotation 4s infinite linear;
+}
+
+.instructions {
+    display: none;
+}
+
+@-webkit-keyframes rotation {
+    25% {
+        -webkit-transform: rotate(-2deg);
+    }
+    75% {
+        -webkit-transform: rotate(2deg);
+    }
+}
+
+/*------------------------------------*
+/          LETTER BANK STYLES         /
+*------------------------------------*/
+.game {
+    display: none;
+    width: 1210px;
+    height: 800px;
+    border-radius: 4px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.letter-bank {
+    width: 100%;
+    position: absolute;
+    bottom: 4px;
+}
+
+ul.letters, ul.formed-word, ul.computer-word, .letter {
+    font-family: Dosis, sans-serif;
+    list-style-type: none;
+    font-size: 50px;
+    text-transform: uppercase;
+    padding: 0;
+}
+
+.letter {
+    display: inline-block;
+    margin-right: 9px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 65px;
+    text-align: center;
+    margin-bottom: 5px;
+    border: 3px solid;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.letter:hover {
+    transform: scale(1.1);
+}
+
+.letter:active {
+    transform: scale(0.7);
+}
+
+.letter-bank .line {
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #cc9aa4;
+    position: relative;
+    margin-bottom: 9px;
+}
+
+.letter-ghost {
+    display: none;
+}
+
+/*------------------------------------*
+/          SCOREBOARD STYLES          /
+*------------------------------------*/
+.scoreboard {
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+    font-family: Dosis, sans-serif;
+    font-weight: 600;
+}
+
+.username {
+    -webkit-animation: user-rotate 5s infinite linear;
+}
+
+.computer {
+    -webkit-animation: computer-rotate 5s infinite linear;
+}
+
+@-webkit-keyframes user-rotate {
+    25% {
+        -webkit-transform: rotate(-2deg);
+    }
+    75% {
+        -webkit-transform: rotate(2deg);
+    }
+}
+
+@-webkit-keyframes computer-rotate {
+    25% {
+        -webkit-transform: rotate(2deg);
+    }
+    75% {
+        -webkit-transform: rotate(-2deg);
+    }
+}
+
+/*------------------------------------*
+/          LETTER LIST STYLES          /
+*------------------------------------*/
+.formed-word, .computer-word {
+    border-radius: 4px;
+    border: 4px solid rgb(116, 204, 162);
+    background-color: rgb(145, 255, 202);
+    width: 100%;
+    height: 170px;
+    padding: 40px !important;
+    margin: 79px 0 -35px;
+    font-size: 50px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.formed-word-wrapper, .computer-word {
+    -webkit-animation: word-rotate 6s infinite linear;
+}
+
+.formed-word .letter {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+.word-message {
+    text-align: center;
+    text-transform: none;
+    font-weight: 600;
+}
+
+.word-message-computer {
+    text-align: center;
+    text-transform: none;
+    font-weight: 600;
+    font-family: Dosis, sans-serif;
+    list-style-type: none;
+}
+
+@-webkit-keyframes word-rotate {
+    25% {
+        -webkit-transform: rotate(1deg);
+    }
+    75% {
+        -webkit-transform: rotate(-1deg);
+    }
+}
+
+/*------------------------------------*
+/          BUTTON STYLES              /
+*------------------------------------*/
+.game-buttons {
+    list-style-type: none;
+    padding-left: 0;
+    position: absolute;
+    margin-top: 155px;
+}
+
+.game-button {
+    font-family: Dosis, sans-serif;
+    font-size: 34px;
+    font-weight: 600;
+    border: 3px solid;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: all 0.2s ease;
+}
+
+.game-button:hover {
+    transform: scale(1.1);
+}
+
+.game-button:active {
+    transform: scale(0.7) !important;
+}
