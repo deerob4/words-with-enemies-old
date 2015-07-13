@@ -23,6 +23,7 @@ module.exports = function(quantity) {
       counter++
     }
   }
+  console.log('Letters generated!');
   return letters;
 }
 

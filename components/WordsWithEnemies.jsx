@@ -1,11 +1,13 @@
 var React = require('react');
-var LetterBank = require('./LetterBank.jsx');
+var Game = require('./game/Game.jsx');
+var Menu = require('./menu/Menu.jsx');
 var generateColours = require('../utils/generateColours');
 
 var WordsWithEnemies = React.createClass({
 	getInitialState: function() {
 		return {
-			colours: {}
+			colours: {},
+			screen: 'menu'
 		};
 	},
 
@@ -17,7 +19,10 @@ var WordsWithEnemies = React.createClass({
 
 	render: function() {
 		return (
-			<LetterBank quantity="23" />
+			<div>
+				<Menu colours={this.state.colours} />
+				<div id="podge"></div>
+			</div>
 		);
 	}
 });

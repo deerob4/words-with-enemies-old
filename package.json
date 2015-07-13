@@ -4,6 +4,7 @@
   "description": "A fun word making game.",
   "main": "app.js",
   "dependencies": {
+    "animate.css": "^3.2.5",
     "browserify": "^10.2.6",
     "express": "^4.13.1",
     "randomcolor": "^0.3.0",

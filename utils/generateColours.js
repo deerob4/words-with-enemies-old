@@ -5,14 +5,14 @@ var choice = require('./choice');
 
 var game = function() {
 	var colours = ['blue', 'red', 'orange', 'purple'];
-	var primaryColour = randomColour({ luminosity: 'light', hue: choice(colours) });
-
+	var primary = randomColour({ luminosity: 'light', hue: choice(colours) });
+	
 	return {
-		primaryColour,
-		secondaryColour: colourLuminance(primaryColour, -0.2),
-		buttonColour: colourLuminance(primaryColour, -0.3),
-		userColour: randomColour({ luminosity: 'light' }),
-		computerColour: randomColour({ luminosity: 'light', hue: 'red' })
+		primary,
+		secondary: colourLuminance(primary, -0.2),
+		button: colourLuminance(primary, -0.3),
+		user: randomColour({ luminosity: 'light' }),
+		computer: randomColour({ luminosity: 'light', hue: 'red' })
 	};
 }
 
