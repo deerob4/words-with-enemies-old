@@ -12,7 +12,7 @@ gulp.task('browserify', function() {
 	var b = browserify();
 	b.transform(reactify);
 	b.transform(babelify);
-	b.add('./components/game.js');
+	b.add('./components/WordsWithEnemies.jsx');
 	return b.bundle()
 		.pipe(source('bundle.js'))
 		.pipe(gulp.dest('./dist'));
