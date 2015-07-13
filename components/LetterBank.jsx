@@ -1,7 +1,6 @@
 var React = require('react');
 var Letter = require('./Letter.jsx');
 
-var response = require('superagent')
 var generateLetters = require('../utils/generateLetters');
 
 var LetterBank = React.createClass({
@@ -23,7 +22,7 @@ var LetterBank = React.createClass({
 			letters: letters 
 		});
 	},
-	
+
 	render: function() {
 		var letters = this.state.letters.map(function(letter) {
 			return ( <Letter key={letter.id} value={letter.value} /> )
