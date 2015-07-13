@@ -2,11 +2,12 @@ var React = require('react');
 var Letter = require('./Letter.jsx');
 
 var response = require('superagent')
+var generateLetters = require('../utils/generateLetters');
 
 var LetterBank = React.createClass({
 	getInitialState: function() {
 		return {
-			letters: ['f', 'a', 'i', 'l', 'e', 'd', '!']
+			letters: []
 		};
 	},
 
@@ -17,15 +18,15 @@ var LetterBank = React.createClass({
 	},
 
 	componentDidMount: function() {
-		response
-			.get('/api/letters')
-			.query({ quantity: this.props.quantity })
-			.end(function(err, res) { console.log(this) });
+		var letters = generateLetters(this.props.quantity);
+		this.setState({
+			letters: letters 
+		});
 	},
-
+	
 	render: function() {
-		var letters = this.state.letters.map(function(value) {
-			return ( <Letter key={value} value={value} /> )
+		var letters = this.state.letters.map(function(letter) {
+			return ( <Letter key={letter.id} value={letter.value} /> )
 		});
 
 		return (

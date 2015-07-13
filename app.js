@@ -18,28 +18,6 @@ app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/api/letters', function(req, res) {
-	var quantity = req.query.quantity;
-  var vowels = 'aeiou';
-  var consonants = 'bcdfghjklmnpqrstvwxyz';
-  var numVowels = Math.floor(quantity / 3); // Performs integer division.
-  var letters = [];
-
-  // Constructs multiple sets of letters and consonants - will look something like:
-  // ["aeiou", "aeiou", "aeiou", "bcdfghjklmnpqrstvwxyz", "bcdfghjklmnpqrstvwxyz"]
-  var letterSets = [vowels, vowels, vowels]
-  for (let i = 0; i < (quantity - numVowels); i++) {
-    letterSets.push(consonants);
-  }
-
-  for (let letterset of letterSets) {
-    for (let letter of choice(letterset)) {
-      letters.push(letter);
-    }
-  }
-  res.json({letters});
-});
-
 app.get('/api/words', function(req, res) {
 	var letters = req.query.letters.split('');
   var foundWords = [];
@@ -63,10 +41,6 @@ app.get('/api/words', function(req, res) {
 
 	res.json({length: foundWords.length, foundWords: sortByLength(foundWords)});
 });
-
-function choice(array) {
-  return array[Math.floor(Math.random() * array.length)];
-}
 
 function sortByLength(array) {
   var sorted = array.sort(function(a, b) {
