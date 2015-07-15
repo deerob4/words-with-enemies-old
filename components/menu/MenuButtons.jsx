@@ -1,7 +1,6 @@
 var React = require('react');
 var Game = require('../game/Game.jsx');
 var Menu = require('../Menu.jsx');
-
 var animateMenu = require('../../utils/animateMenu.js');
 
 var MenuButtons = React.createClass({
@@ -11,6 +10,7 @@ var MenuButtons = React.createClass({
 
 	chooseDifficulty: function() {
 		animateMenu('#menuButtons', 'bounceOutRight', '#difficultyButtons', 'bounceInLeft');
+		React.unmountComponentAtNode(document.getElementById('menuButtons'));
 	},
 
 	render: function() {

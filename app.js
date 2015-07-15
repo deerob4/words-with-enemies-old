@@ -19,10 +19,10 @@ app.get('/', function(req, res) {
 });
 
 app.get('/api/words', function(req, res) {
-	var letters = req.query.letters;
+	var letters = req.query.letters.split('');
   var foundWords = [];
 
-  // console.log(letters);
+  console.log(letters);
 
   for (let word of wordList) {
     let splitWord = word.split('');

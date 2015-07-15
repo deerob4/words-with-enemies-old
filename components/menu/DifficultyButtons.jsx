@@ -6,9 +6,9 @@ var DifficultyButtons = React.createClass({
 	render: function() {
 		return (
 			<div className="setupButtons" id="difficultyButtons">
-				<DifficultyButton colour={this.props.colours.button} difficulty="easy" />
-				<DifficultyButton colour={this.props.colours.button} difficulty="medium" />
-				<DifficultyButton colour={this.props.colours.button} difficulty="hard" />
+				<DifficultyButton colours={this.props.colours} difficulty="easy" />
+				<DifficultyButton colours={this.props.colours} difficulty="medium" />
+				<DifficultyButton colours={this.props.colours} difficulty="hard" />
 			</div>
 		);
 	}

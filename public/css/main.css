@@ -103,7 +103,7 @@ p {
 /          LETTER BANK STYLES         /
 *------------------------------------*/
 .game {
-    /*display: none;*/
+    display: none;
     width: 1210px;
     height: 800px;
     border-radius: 4px;
