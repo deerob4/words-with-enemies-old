@@ -9,17 +9,8 @@ var MenuButtons = React.createClass({
 		window.open('http://github.com/deerob4/words-with-enemies', '_blank');
 	},
 
-	playGame: function() {
-		// React.render(<Game colours={this.props.colours} />, document.getElementById('game'));
-		// React.unmountComponentAtNode('app')
-		animateMenu('#menuButtons', 'bounceInUp', '#difficultyButtons', 'bounceInLeft');
-		animateMenu({
-			initialAnimation: 'bounceInUp',
-			exitElement: '#menuButtons',
-			exitAnimation: 'bounceOutRight',
-			enterElement: '#difficultyButtons',
-			enterAnimation: 'bounceInLeft'
-		})
+	chooseDifficulty: function() {
+		animateMenu('#menuButtons', 'bounceOutRight', '#difficultyButtons', 'bounceInLeft');
 	},
 
 	render: function() {
@@ -32,7 +23,7 @@ var MenuButtons = React.createClass({
 				<div style={style} className="menuButton" id="instructionsButton">
 					Instructions
 				</div>
-				<div style={style} className="menuButton" id="playButton" onClick={this.playGame}>
+				<div style={style} className="menuButton" id="playButton" onClick={this.chooseDifficulty}>
 					Play Now
 				</div>
 				<div style={style} className="menuButton" id="sourceButton" onClick={this.viewSource}>
