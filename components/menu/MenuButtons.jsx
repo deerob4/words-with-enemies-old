@@ -1,5 +1,8 @@
 var React = require('react');
 var Game = require('../game/Game.jsx');
+var Menu = require('../Menu.jsx');
+
+var animateMenu = require('../../utils/animateMenu.js');
 
 var MenuButtons = React.createClass({
 	viewSource: function() {
@@ -7,7 +10,16 @@ var MenuButtons = React.createClass({
 	},
 
 	playGame: function() {
-		React.render(<Game colours={this.props.colours} />, document.getElementById('game'));
+		// React.render(<Game colours={this.props.colours} />, document.getElementById('game'));
+		// React.unmountComponentAtNode('app')
+		animateMenu('#menuButtons', 'bounceInUp', '#difficultyButtons', 'bounceInLeft');
+		animateMenu({
+			initialAnimation: 'bounceInUp',
+			exitElement: '#menuButtons',
+			exitAnimation: 'bounceOutRight',
+			enterElement: '#difficultyButtons',
+			enterAnimation: 'bounceInLeft'
+		})
 	},
 
 	render: function() {
@@ -16,7 +28,7 @@ var MenuButtons = React.createClass({
 			borderColor: this.props.colours.button
 		}
 		return (
-			<div className="setupButtons animated bounceInUp">
+			<div className='setupButtons animated bounceInUp' id="menuButtons">
 				<div style={style} className="menuButton" id="instructionsButton">
 					Instructions
 				</div>

@@ -60,22 +60,26 @@ p {
     transform: scale(0.7);
 }
 
-#playButton:hover {
+#playButton:hover, #easyButton:hover {
     background-color: #69ea9b;
     border-color: #54bb7c !important;
     color: #3c7f56 !important;
 }
 
-#instructionsButton:hover {
+#instructionsButton:hover, #mediumButton:hover {
     background-color: #a8e6f4;
     border-color: #86b8c3 !important;
     color: #49758c !important;
 }
 
-#sourceButton:hover {
+#sourceButton:hover, #hardButton:hover {
     background-color: #fce1a4;
     border-color: #cab483 !important;
     color: #9d9362 !important;
+}
+
+#difficultyButtons {
+    display: none
 }
 
 .rotate {

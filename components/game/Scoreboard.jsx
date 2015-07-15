@@ -34,7 +34,7 @@ var Scoreboard = React.createClass({
 
 		return (
 			<div className="scoreboard">
-				<span className="col-sm-4 username" style={userStyles}>Username - {this.state.userScore}</span>
+				<span className="col-sm-4 username" style={userStyles}>You - {this.state.userScore}</span>
 				<span className="col-sm-4" style={roundStyles}>Round {this.state.round}</span>
 				<span className="col-sm-4 computer" style={computerStyles}>Computer - {this.state.computerScore}</span>
 			</div>

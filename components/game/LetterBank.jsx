@@ -1,6 +1,7 @@
 var React = require('react');
 var Letter = require('./Letter.jsx');
 var Divider = require('./Divider.jsx');
+var request = require('superagent');
 
 var generateLetters = require('../../utils/generateLetters');
 
@@ -19,7 +20,8 @@ var LetterBank = React.createClass({
 
 	componentDidMount: function() {
 		var letters = generateLetters(this.props.quantity);
-		this.setState({ letters: letters });
+		console.log(letters)
+		this.setState({ letters });
 	},
 
 	render: function() {

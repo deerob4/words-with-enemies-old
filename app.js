@@ -19,14 +19,16 @@ app.get('/', function(req, res) {
 });
 
 app.get('/api/words', function(req, res) {
-	var letters = req.query.letters.split('');
+	var letters = req.query.letters;
   var foundWords = [];
+
+  // console.log(letters);
 
   for (let word of wordList) {
     let splitWord = word.split('');
     // Loop through all the letters passed via params.
     for (let letter of letters) {
-      let index = splitWord.indexOf(letter);
+      let index = splitWord.indexOf(letter.value);
       // If the letter is in the current word...
       if (index != -1) {
         // ...remove it
