@@ -29,14 +29,14 @@ var Scoreboard = React.createClass({
 
 	render: function() {
 		var roundStyles = { color: this.props.colours.primary }
-		var userStyles = { color: this.props.colours.user };
-		var computerStyles = { color: this.props.colours.computer };
+		var userStyles = { color: this.props.colours.userPrimary };
+		var computerStyles = { color: this.props.colours.computerPrimary };
 
 		return (
 			<div className="scoreboard">
-				<span className="col-sm-4 username" style={userStyles}>You - {this.state.userScore}</span>
+				<span className="col-sm-4 userRotate" style={userStyles}>You - {this.state.userScore}</span>
 				<span className="col-sm-4" style={roundStyles}>Round {this.state.round}</span>
-				<span className="col-sm-4 computer" style={computerStyles}>Computer - {this.state.computerScore}</span>
+				<span className="col-sm-4 computerRotate" style={computerStyles}>Computer - {this.state.computerScore}</span>
 			</div>
 		);
 	}

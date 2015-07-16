@@ -1,7 +1,7 @@
 var choice = require('./choice');
 
-var vowels = 'aeiou';
-var consonants = 'bcdfghjklmnpqrstvwxyz';
+const vowels = 'aeiou';
+const consonants = 'bcdfghjklmnpqrstvwxyz';
 
 var bank = function(quantity) {
   var numVowels = Math.floor(quantity / 3); // Performs integer division.

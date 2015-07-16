@@ -1,7 +1,9 @@
 var React = require('react');
 var LetterBank = require('./LetterBank.jsx');
 var Scoreboard = require('./Scoreboard.jsx');
-var GameButtons = require('./buttons/GameButtons.jsx')
+var GameButtons = require('./buttons/GameButtons.jsx');
+var UserWord =  require('./UserWord.jsx');
+var ComputerWord = require('./ComputerWord.jsx');
 
 var Game = React.createClass({
 	getInitialState: function() {
@@ -23,6 +25,8 @@ var Game = React.createClass({
 		return (
 			<div className="game">
 				<Scoreboard colours={this.state.colours} />
+				<UserWord colours={this.state.colours} />
+				<ComputerWord colours={this.state.colours} />
 				<GameButtons colours={this.state.colours} />
 				<LetterBank colours={this.state.colours} quantity={quantities[difficulty]} />
 			</div>
