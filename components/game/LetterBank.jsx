@@ -19,7 +19,7 @@ var LetterBank = React.createClass({
 	},
 
 	componentDidMount: function() {
-		var letters = generateLetters(this.props.quantity);
+		var letters = generateLetters.bank(this.props.quantity);
 		console.log(letters)
 		this.setState({ letters });
 	},

@@ -1,8 +1,9 @@
 var choice = require('./choice');
 
-module.exports = function(quantity) {
-  var vowels = 'aeiou';
-  var consonants = 'bcdfghjklmnpqrstvwxyz';
+var vowels = 'aeiou';
+var consonants = 'bcdfghjklmnpqrstvwxyz';
+
+var bank = function(quantity) {
   var numVowels = Math.floor(quantity / 3); // Performs integer division.
   var letters = [];
   var counter = 0
@@ -23,7 +24,17 @@ module.exports = function(quantity) {
       counter++
     }
   }
-  console.log('Letters generated!');
   return letters;
 }
 
+var vowel = function() {
+  return choice(vowels.split(''));
+}
+
+var consonant = function() {
+  return choice(consonants.split(''));
+}
+
+exports.bank = bank;
+exports.vowel = vowel;
+exports.consonant = consonant;

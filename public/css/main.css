@@ -250,14 +250,14 @@ ul.letters, ul.formed-word, ul.computer-word {
 /*------------------------------------*
 /          BUTTON STYLES              /
 *------------------------------------*/
-.game-buttons {
+.gameButtons {
     list-style-type: none;
     padding-left: 0;
     position: absolute;
     margin-top: 155px;
 }
 
-.game-button {
+.gameButton {
     font-family: Dosis, sans-serif;
     font-size: 34px;
     font-weight: 600;
@@ -271,10 +271,10 @@ ul.letters, ul.formed-word, ul.computer-word {
     transition: all 0.2s ease;
 }
 
-.game-button:hover {
+.gameButton:hover {
     transform: scale(1.1);
 }
 
-.game-button:active {
+.gameButton:active {
     transform: scale(0.7) !important;
 }
