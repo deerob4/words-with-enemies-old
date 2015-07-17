@@ -14,7 +14,7 @@ var Menu = React.createClass({
 
 	componentDidMount: function() {
 		this.setState({
-			colours: generateColours.game() 
+			colours: generateColours.game()
 		});
 	},
 

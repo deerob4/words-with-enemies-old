@@ -10,7 +10,7 @@ var MenuButtons = React.createClass({
 
 	chooseDifficulty: function() {
 		animateMenu('#menuButtons', 'bounceOutRight', '#difficultyButtons', 'bounceInLeft');
-		React.unmountComponentAtNode(document.getElementById('menuButtons'));
+		// React.unmountComponentAtNode(document.getElementById('menuButtons'));
 	},
 
 	render: function() {
