@@ -245,10 +245,10 @@ ul.computer-word {
 
 @-webkit-keyframes word-rotate {
   25% {
-    -webkit-transform: rotate(1deg);
+    -webkit-transform: rotate(0.8deg);
   }
   75% {
-    -webkit-transform: rotate(-1deg);
+    -webkit-transform: rotate(-0.8deg);
   }
 }
 

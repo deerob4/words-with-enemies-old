@@ -12,6 +12,16 @@ var LetterBank = React.createClass({
 		};
 	},
 
+	removeFromBank: function(letterToRemove) {
+		var letters = this.state.letters;
+		for (let letter of letters) {
+			if (letterToRemove.id === letter.id) {
+				letters.splice(letters.indexOf(letter), 1);
+			}
+		}
+		this.setState({ letters: letters });
+	},
+
 	getDefaultProps: function() {
 		return {
 			quantity: 10
@@ -20,13 +30,13 @@ var LetterBank = React.createClass({
 
 	componentDidMount: function() {
 		var letters = generateLetters.bank(this.props.quantity);
-		console.log(letters)
 		this.setState({ letters });
 	},
 
 	render: function() {
+		var removeFromBank = this.removeFromBank
 		var letters = this.state.letters.map(function(letter) {
-			return ( <Letter key={letter.id} value={letter.value} /> )
+			return ( <Letter remove={removeFromBank} id={letter.id} key={letter.id} value={letter.value} /> )
 		});
 
 		var style = { backgroundColor: this.props.colours.primary }

@@ -8,6 +8,18 @@ var UserWord = React.createClass({
 		};
 	},
 
+	removeFromWord: function(letterToRemove) {
+		var letters = this.state.letters;
+		for (let letter of letters)
+	}
+
+	addToWord: function(letter) {
+		// this.state.letters.push({id: 1, value: 'a'})
+		var letters = this.state.letters;
+		letters.push({ id: letter.id, value: letter.value });
+		this.setState({ letters: letters });
+	},
+
 	render: function() {
 		var message;
 		var messageStyle = { color: this.props.colours.userTertiary };
@@ -27,8 +39,10 @@ var UserWord = React.createClass({
 			borderColor: this.props.colours.userTertiary
 		};
 
+		var podge = this.addToWord
+
 		return (
-			<div className="formedWord wordRotate" id="userWord" style={wordStyle}>
+			<div onClick={podge} className="formedWord wordRotate" id="userWord" style={wordStyle}>
 				{message}
 				<ul>{letters}</ul>
 			</div>

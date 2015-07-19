@@ -22,7 +22,6 @@ var Game = React.createClass({
 	render: function() {
 		var difficulty = this.props.difficulty;
 		var quantities = { easy: 15, medium: 10, hard: 4 };
-		
 		return (
 			<div className="game">
 				<Scoreboard colours={this.state.colours} />

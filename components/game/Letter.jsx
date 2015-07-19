@@ -30,8 +30,14 @@ var Letter = React.createClass({
 			borderColor: this.state.borderColour,
 			color: this.state.textColour
 		};
+
+		if (this.props.remove) {
+			var letterInfo = { id: this.props.id, value: this.props.value };
+			var remove = this.props.remove.bind(null, letterInfo);
+		}
+
 		return (
-			<li className="letter" onClick={this.changeColours} style={letterStyle}>{this.props.value}</li>
+			<li className="letter" onClick={remove} style={letterStyle}>{this.props.value}</li>
 		)
 	}
 });
