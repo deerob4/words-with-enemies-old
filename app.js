@@ -53,5 +53,5 @@ function sortByLength(array) {
 }
 
 app.listen(5000, function() {
-	console.log('Listening on 5000.');
+	console.log('Listening on port 5000.');
 });
