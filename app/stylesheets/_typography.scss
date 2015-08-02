@@ -1,0 +1,18 @@
+h1, h2, p {
+	font-family: $font-stack;
+	text-align: center;
+}
+
+h1 {
+	font-size: 80px;
+	font-weight: 700;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+p {
+  font-size: 24px;
+  font-weight: 600;
+}
