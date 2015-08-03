@@ -3,9 +3,9 @@ import colourLuminance from './colourLuminance';
 import choice from './choice';
 
 export let generateGameColours = () =>  {
-	var colours = ['blue', 'red', 'orange', 'purple'];
+	let colours = ['blue', 'red', 'orange', 'purple'];
 	
-	var colourScheme = {
+	let colourScheme = {
 		primary: randomColour({ luminosity: 'light', hue: choice(colours) }),
 		userPrimary: randomColour({ luminosity: 'light' }),
 		computerPrimary: randomColour({ luminosity: 'light', hue: 'red' }),

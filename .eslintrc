@@ -1,0 +1,18 @@
+{
+	"ecmaFeatures": {
+		"jsx": true,
+		"modules": true,
+	},
+	"env": {
+		"browser": true,
+		"node": true,
+	},
+	"rules": {
+		"semi": 2,
+		"brace-style": 2,
+		"camelcase": 2,
+		"no-var": 2,
+		"eol-last": 2
+	},
+	"parser": "babel-eslint"
+}

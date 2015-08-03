@@ -26,12 +26,12 @@ export default class Letter extends React.Component {
 	}
 	render() {
 		if (this.props.remove) {
-			var letterInfo = { id: this.props.id, value: this.props.value };
-			var remove = this.props.remove.bind(null, letterInfo);
+			let letterInfo = { id: this.props.id, value: this.props.value };
+			let remove = this.props.remove.bind(null, letterInfo);
 		}
 
 		return (
 			<li className="letter" onClick={remove} style={this.state}>{this.props.value}</li>
-		)
+		);
 	}
 }

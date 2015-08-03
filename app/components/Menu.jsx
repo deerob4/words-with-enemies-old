@@ -3,17 +3,17 @@ import MenuButtons from './menu/MenuButtons';
 import DifficultyButtons from './menu/DifficultyButtons';
 import Instructions from './menu/Instructions';
 
-import { generateGameColours } from '../libs/generateColours.js';
+import generateGameColours from '../libs/generateColours.js';
 
 export default class Menu extends React.Component {
 	constructor() {
 		super();
 
-		console.log(generateGameColours)
+		console.log(require('../libs/generateColours.js'));
 
 		this.state = {
 			colours: generateGameColours()
-		}
+		};
 	}
 	render() {
 		let style = { color: this.state.colours.primary };

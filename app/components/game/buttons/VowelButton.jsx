@@ -1,6 +1,6 @@
 import React from 'react';
 
-import generateLetters from '../../../libs/generateLetters';
+import generateVowel from '../../../libs/generateLetters';
 
 export default class VowelButton extends React.Component {
 	constructor(props) {
@@ -12,7 +12,7 @@ export default class VowelButton extends React.Component {
 	}
 	newVowel() {
 		this.setState({ vowelsLeft: this.state.vowelsLeft - 1 });
-		return generateLetters.vowel();
+		return generateVowel();
 	}
 	render() {
 		return <div className="gameButton" style={this.props.style} onClick={this.newVowel}>Vowel please!</div>;

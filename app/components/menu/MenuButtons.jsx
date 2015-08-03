@@ -12,7 +12,7 @@ export default class MenuButtons extends React.Component {
 		let style = {
 			color: this.props.colours.button,
 			borderColor: this.props.colours.button
-		}
+		};
 		return (
 			<div className='setupButtons animated bounceInUp' id="menuButtons">
 				<div style={style} className="menuButton" id="instructionsButton">

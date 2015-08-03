@@ -1,9 +1,11 @@
-var React = require('react');
+import React from 'react';
 
-var Instructions = React.createClass({
-
-	render: function() {
-		var style = {
+export default class Instructions extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		let style = {
 			color: this.props.colours.primary
 		};
 		return (
@@ -13,7 +15,4 @@ var Instructions = React.createClass({
 			</div>
 		);
 	}
-
-});
-
-module.exports = Instructions;
+}

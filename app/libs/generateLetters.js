@@ -3,7 +3,7 @@ import choice from './choice';
 const vowels = 'aeiou';
 const consonants = 'bcdfghjklmnpqrstvwxyz';
 
-export const bank = quantity => {
+export let generateBankLetters = quantity => {
   let numVowels = Math.floor(quantity / 3); // Performs integer division.
   let letters = [];
   let counter = 0;
@@ -27,5 +27,5 @@ export const bank = quantity => {
   return letters;
 };
 
-export const vowel = () => choice(vowels.split(''));
-export const consonant = () => choice(consonants.split(''));
+export let generateVowel = () => choice(vowels.split(''));
+export let generateConsonant = () => choice(consonants.split(''));

@@ -21,8 +21,13 @@ var common = {
 		preLoaders: [
 			{
 				test: /\.js$/,
-				exclude: /node_modules/
-,				loader: 'jshint-loader'
+				exclude: /node_modules/,
+				loader: 'eslint-loader'
+			},
+			{
+				test: /\.jsx$/,
+				exclude: /node_modules/,
+				loader: 'eslint-loader'
 			}
 		],
 		loaders: [
@@ -35,9 +40,6 @@ var common = {
 				loaders: 'style!css!sass'
 			}
 		]
-	},
-	jshint: {
-		esnext: true
 	},
 	plugins: [
 		new htmlWebpackPlugin({

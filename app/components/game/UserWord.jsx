@@ -26,7 +26,7 @@ export default class UserWord extends React.Component {
 	}
 	render() {
 		let letterBlock = <Letter remove={this.removeFromWord} value={letter.value} key={letter.id} />;
-		var letters = this.state.letters.map(letter => letterBlock);
+		let letters = this.state.letters.map(letter => letterBlock);
 		let messageStyle = { color: this.props.colours.userTertiary };
 		let message = this.state.letters.length ? '' : <div className="formedWordMessage" style={messageStyle}>Make a word with the letters!</div> ;
 		let wordStyle = {

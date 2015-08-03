@@ -4,7 +4,7 @@ import animateMenu from '../../libs/animateMenu.js';
 
 export default class DifficultyButtons extends React.Component {
 	playGame(difficulty) {
-		console.log(difficulty)
+		console.log(difficulty);
 		React.render(<Game colours={this.props.colours}
 											 difficulty={difficulty} />,
 											 document.getElementById('game')

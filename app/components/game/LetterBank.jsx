@@ -2,7 +2,7 @@ import React from 'react';
 
 import Letter from './Letter';
 
-import generateLetters from '../../libs/generateLetters';
+import generateBankLetters from '../../libs/generateLetters';
 
 export default class LetterBank extends React.Component {
 	constructor(props) {
@@ -22,14 +22,14 @@ export default class LetterBank extends React.Component {
 		this.setState({ letters: letters });
 	}
 	componentDidMount() {
-		this.setState({ letters: generateLetters.bank(this.props.quantity) });
+		this.setState({ letters: generateBankLetters(this.props.quantity) });
 	}
 	render() {
 		let removeFromBank = this.removeFromBank;
-		let letterBlock = <Letter remove={removeFromBank} id={letter.id} key={letter.id} value={letter.value} />
+		let letterBlock = <Letter remove={removeFromBank} id={letter.id} key={letter.id} value={letter.value} />;
 		let letters = this.state.letters.map(letter => letterBlock);
 
-		let style = { backgroundColor: this.props.colours.primary }
+		let style = { backgroundColor: this.props.colours.primary };
 
 		return (
 			<div className="letterBank">

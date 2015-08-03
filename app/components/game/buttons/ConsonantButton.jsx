@@ -1,6 +1,6 @@
 import React from 'react';
 
-import generateLetters from '../../../libs/generateLetters.js'
+import generateConsonant from '../../../libs/generateLetters.js';
 
 export default class ConsonantButton extends React.Component {
 	constructor(props) {
@@ -12,7 +12,7 @@ export default class ConsonantButton extends React.Component {
 	}
 	newConsonant() {
 		this.setState({ consonantsLeft: this.state.consonantsLeft - 1 });
-		return generateLetters.consonant();
+		return generateConsonant();
 	}
 	render() {
 		return (
