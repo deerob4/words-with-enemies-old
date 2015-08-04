@@ -6,10 +6,14 @@ export default class UserWord extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.removeFromWord = this.removeFromWord.bind(this);
+		this.addToWord = this.addToWord.bind(this);
+
 		this.state = {
 			letters: []
 		};
 	}
+
 	removeFromWord(letterToRemove)  {
 		let letters = this.state.letters;
 		for (let letter of letters) {
@@ -18,12 +22,14 @@ export default class UserWord extends React.Component {
 			}
 		}
 	}
+
 	addToWord(letter)  {
 		// this.state.letters.push({id: 1, value: 'a'})
 		let letters = this.state.letters;
 		letters.push({ id: letter.id, value: letter.value });
 		this.setState({ letters: letters });
 	}
+	
 	render() {
 		let letterBlock = <Letter remove={this.removeFromWord} value={letter.value} key={letter.id} />;
 		let letters = this.state.letters.map(letter => letterBlock);

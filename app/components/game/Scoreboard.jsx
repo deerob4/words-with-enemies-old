@@ -4,21 +4,29 @@ export default class Scoreboard extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.updateRound = this.updateRound.bind(this);
+		this.updateUserScore = this.updateUserScore.bind(this);
+		this.updateComputerScore = this.updateUserScore.bind(this);
+
 		this.state = {
 			round: 1,
 			userScore: 0,
 			computerScore: 0
 		};
 	}
+
 	updateRound() {
 		this.setState({ round: this.state.round + 1 });
 	}
+
 	updateUserScore() {
 		this.setState({ userScore: this.state.userScore + 1 });
 	}
+
 	updateComputerScore() {
 		this.setState({ computerScore: this.state.computerScore + 1 });
 	}
+	
 	render() {
 		let roundStyles = { color: this.props.colours.primary };
 		let userStyles = { color: this.props.colours.userPrimary };

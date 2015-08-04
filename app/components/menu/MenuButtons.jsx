@@ -2,6 +2,11 @@ import React from 'react';
 import animateMenu from '../../libs/animateMenu';
 
 export default class MenuButtons extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.chooseDifficulty = this.chooseDifficulty.bind(this);
+	}
 	viewSource() {
 		window.open('http://github.com/deerob4/words-with-enemies', '_blank');
 	}

@@ -2,7 +2,7 @@ import randomColour from 'randomcolor';
 import colourLuminance from './colourLuminance';
 import choice from './choice';
 
-export let generateGameColours = () =>  {
+export function generateGameColours() {
 	let colours = ['blue', 'red', 'orange', 'purple'];
 	
 	let colourScheme = {
@@ -21,7 +21,7 @@ export let generateGameColours = () =>  {
 	return colourScheme;
 };
 
-export let generateLetterColours = () => {
+export function generateLetterColours() {
 	let backgroundColour = randomColour({ luminosity: 'light' });
 	let borderColour = colourLuminance(backgroundColour, -0.2);
 	let textColour = colourLuminance(borderColour, -0.2);

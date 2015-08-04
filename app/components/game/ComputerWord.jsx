@@ -10,6 +10,7 @@ export default class ComputerWord extends React.Component {
 			letters: []
 		};
 	}
+	
 	render() {
 		let message = this.state.letters.length ? '' : messageContent;
 		let messageContent = <div className="formedWordMessage" style={messageStyle}>Computer word goes here!</div>;

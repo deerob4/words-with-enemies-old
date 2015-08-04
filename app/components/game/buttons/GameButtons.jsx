@@ -7,9 +7,6 @@ import ConsonantButton from './ConsonantButton';
 import ChangeColoursButton from './ChangeColoursButton';
 
 export default class GameButtons extends React.Component {
-	constructor(props) {
-		super(props);
-	}
 	render() {
 		let style = {
 			backgroundColor: this.props.colours.primary,

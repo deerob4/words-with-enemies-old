@@ -1,19 +1,23 @@
 import React from 'react';
 
-import generateConsonant from '../../../libs/generateLetters.js';
+import { generateConsonant } from '../../../libs/generateLetters.js';
 
 export default class ConsonantButton extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.newConsonant = this.newConsonant.bind(this);
+
 		this.state = {
 			consonantsLeft: 5
 		};
 	}
+
 	newConsonant() {
 		this.setState({ consonantsLeft: this.state.consonantsLeft - 1 });
 		return generateConsonant();
 	}
+	
 	render() {
 		return (
 			<div className="gameButton" 

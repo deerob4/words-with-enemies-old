@@ -3,7 +3,7 @@ import choice from './choice';
 const vowels = 'aeiou';
 const consonants = 'bcdfghjklmnpqrstvwxyz';
 
-export let generateBankLetters = quantity => {
+export let generateLetterSet = quantity => {
   let numVowels = Math.floor(quantity / 3); // Performs integer division.
   let letters = [];
   let counter = 0;

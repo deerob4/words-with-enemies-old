@@ -3,30 +3,35 @@ import MenuButtons from './menu/MenuButtons';
 import DifficultyButtons from './menu/DifficultyButtons';
 import Instructions from './menu/Instructions';
 
-import generateGameColours from '../libs/generateColours.js';
+import ColourStore from '../stores/ColourStore';
+import ColourActions from '../actions/ColourActions';
 
+import connect from '../decorators/connect';
+
+@connect(ColourStore)
 export default class Menu extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
-		console.log(require('../libs/generateColours.js'));
-
-		this.state = {
-			colours: generateGameColours()
-		};
+		ColourActions.generate();
 	}
+
+	changeColours() {
+		ColourActions.generate();
+	}
+	
 	render() {
-		let style = { color: this.state.colours.primary };
+		let style = { color: this.props.colours.primary };
 		return (
 			<div className="menu">
 				<div className="container">
-					<Instructions colours={this.state.colours} />
+					<Instructions colours={this.props.colours} />
 					<div style={style} className="animated bounceInDown">
-						<h1>Words With Enemies</h1>
+						<h1 onClick={this.changeColours}>Words With Enemies</h1>
 						<p>Expand your vocabulary whilst boosting your ego!</p>
 					</div>
-					<MenuButtons colours={this.state.colours} />
-					<DifficultyButtons colours={this.state.colours} />
+					<MenuButtons colours={this.props.colours} />
+					<DifficultyButtons colours={this.props.colours} />
 				</div>
 			</div>
 		);

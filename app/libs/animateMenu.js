@@ -1,12 +1,17 @@
-import $ from 'jquery';
+let isClass = element => element.charAt(0) === '.' ? true : false;
 
-export default (hideElement, removeAnimation, showElement, addAnimation) => {
-	// Animates the initial element out using specified animation.
-	$(hideElement).addClass('animated ' + removeAnimation);
-	setTimeout(function () {
-		// Hides the initial element and removes the added classes.
-	  $(hideElement).css('display', 'none').removeClass('animated ' + removeAnimation);
-	  // Sets the new element to show using specified animation.
-	  $(showElement).css('display', 'block').addClass('animated ' + addAnimation);
-	}, 500);
+export default (hideElementDOM, removeAnimation, showElementDOM, addAnimation) => {
+  let hideElement = isClass(hideElementDOM) ? document.getElementsByClass(hideElementDOM.replace('.', '')) 
+                                            : document.getElementById(hideElementDOM.replace('#', ''));
+  hideElement.classList.add('animated', removeAnimation);
+
+  setTimeout(() => {
+    hideElement.style.display = 'none';
+    hideElement.classList.remove('animated', removeAnimation);
+
+    let showElement = isClass(showElementDOM) ? document.getElementsByClass(showElementDOM.replace('.', ''))
+                                              : document.getElementById(showElementDOM.replace('#', ''));
+    showElement.style.display = 'block';
+    showElement.classList.add('animated', addAnimation);
+  }, 500);
 };

@@ -1,10 +1,12 @@
 import React from 'react';
 
-import generateLetterColours from '../../libs/generateColours';
+import { generateLetterColours } from '../../libs/generateColours';
 
 export default class Letter extends React.Component {
 	constructor(props) {
 		super(props);
+
+		this.changeColours = this.changeColours.bind(this);
 
 		this.state = {
 			backgroundColour: '',
@@ -12,6 +14,7 @@ export default class Letter extends React.Component {
 			textColour: ''
 		};
 	}
+
 	changeColours() {
 		let newColours = generateLetterColours();
 
@@ -21,9 +24,11 @@ export default class Letter extends React.Component {
 			textColour: newColours.textColour
 		});
 	}
+
 	componentDidMount() {
 		this.changeColours();
 	}
+	
 	render() {
 		if (this.props.remove) {
 			let letterInfo = { id: this.props.id, value: this.props.value };
