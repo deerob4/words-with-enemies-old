@@ -1,0 +1,28 @@
+.gameButtons {
+  list-style-type: none;
+  padding-left: 0;
+  position: absolute;
+  margin-top: 155px;
+}
+
+.gameButton {
+  font-family: Dosis, sans-serif;
+  font-size: 34px;
+  font-weight: 600;
+  border: 3px solid;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: all 0.2s ease;
+}
+
+.gameButton:hover {
+  transform: scale(1.1);
+}
+
+.gameButton:active {
+  transform: scale(0.6) !important;
+}

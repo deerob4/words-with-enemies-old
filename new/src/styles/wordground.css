@@ -1,0 +1,28 @@
+.wordGround {
+  border-radius: 4px;
+  border: 4px solid;
+  width: 100%;
+  height: 170px;
+  padding: 40px 40px 40px 0 !important;
+  margin: 79px 0 -35px;
+  font-size: 50px;
+  transition: all 0.3s ease;
+  position: relative;
+  -webkit-animation: word-rotate 6s infinite linear;
+}
+
+.wordGroundMessage {
+  font-family: Dosis, sans-serif;
+  text-align: center;
+  text-transform: none;
+  font-weight: 600;
+}
+
+@-webkit-keyframes word-rotate {
+  25% {
+    -webkit-transform: rotate(0.8deg);
+  }
+  75% {
+    -webkit-transform: rotate(-0.8deg);
+  }
+}

@@ -1,0 +1,66 @@
+/**
+ * LETTERBANK STYLES
+ */
+.letterbank {
+  position: absolute;
+  bottom: 4px;
+}
+
+/**
+ * GAME BUTTON STYLES
+ */
+.gameButtons {
+  list-style-type: none;
+  padding-left: 0;
+  position: absolute;
+  margin-top: 155px;
+}
+
+.gameButton {
+  font-family: Dosis, sans-serif;
+  font-size: 34px;
+  font-weight: 600;
+  border: 3px solid;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: all 0.2s ease;
+}
+
+.gameButton:hover {
+  transform: scale(1.1);
+}
+
+.gameButton:active {
+  transform: scale(0.6) !important;
+}
+
+/**
+ * LETTERBLOCK STYLES
+ */
+.letterblock {
+  font-family: Dosis, sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 500;
+  font-size: 50px;
+  width: 65px;
+  border-radius: 5px;
+  border: 3px solid;
+  margin: 0 9px 5px 0;
+  list-style-type: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.letterblock:hover {
+  transform: scale(1.1);
+}
+
+.letterblock:active {
+  transform: scale(0.7);
+}
