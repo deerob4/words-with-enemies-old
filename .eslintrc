@@ -1,20 +1,38 @@
 {
-	"ecmaFeatures": {
-		"jsx": true,
-		"modules": true,
-	},
-	"env": {
-		"browser": true,
-		"node": true,
-	},
-	"rules": {
-		"semi": 2,
-		"brace-style": 2,
-		"camelcase": 2,
-		"no-var": 2,
-		"eol-last": 2,
-		"eqeqeq": 2,
-		"quotes": [2, "single"]
-	},
-	"parser": "babel-eslint"
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "semi": 1,
+    "brace-style": 1,
+    "camelcase": 1,
+    "comma-dangle": 1,
+    "no-const-assign": 2,
+    "no-extra-semi": 1,
+    "no-sparse-arrays": 1,
+    "no-unreachable": 2,
+    "comma-spacing": 1,
+    "object-shorthand": 1,
+    "no-var": 2,
+    "eol-last": 2,
+    "eqeqeq": 2,
+    "no-undef": 2,
+    "no-invalid-this": 2,
+    "yoda": 1,
+    "default-case": 2,
+    "quotes": [2, "single"],
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": 2
+  },
+  "plugins": [
+    "react"
+  ]
 }

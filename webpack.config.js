@@ -1,96 +1,54 @@
-var webpack = require('webpack');
-var path = require('path');
-var merge = require('webpack-merge');
-var htmlWebpackPlugin = require('html-webpack-plugin');
+'use strict';
 
-var TARGET = process.env.TARGET;
-var ROOT_PATH = path.resolve(__dirname);
+let path =  require('path');
+let webpack =  require('webpack');
 
-var common = {
-	entry: [
-		path.resolve(ROOT_PATH, 'app/main')
-	],
-	resolve: {
-		extensions: ['', '.js', '.jsx']
-	},
-	output: {
-		path: path.resolve(ROOT_PATH, 'build'),
-		filename: 'bundle.js'
-	},
-	module: {
-		preLoaders: [
-			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-				loader: 'eslint-loader'
-			},
-			{
-				test: /\.jsx$/,
-				exclude: /node_modules/,
-				loader: 'eslint-loader'
-			}
-		],
-		loaders: [
-			{
-				test: /\.css$/,
-				loaders: ['style', 'css']
-			},
-			{
-				test: /\.scss$/,
-				loaders: 'style!css!sass'
-			}
-		]
-	},
-	plugins: [
-		new htmlWebpackPlugin({
-			title: 'Words With Enemies',
-			template: "app/index.html",
-			minify: true
-		})
-	]
+let config = {
+  devtool: 'eval',
+  entry: [
+    'webpack-hot-middleware/client',
+    './src/index'
+  ],
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/static/'
+  },
+  resolve: {
+    alias: {
+      constants: path.resolve('./src/', 'constants'),
+      actions: path.resolve('./src/', 'actions'),
+      reducers: path.resolve('./src/', 'reducers'),
+      components: path.resolve('./src/', 'components'),
+      utils: path.resolve('./src/', 'utils'),
+      libs: path.resolve('./src/', 'libs'),
+      store: path.resolve('./src/', 'store'),
+      styles: path.resolve('./src/', 'styles'),
+      assets: path.resolve('./src/', 'assets')
+    }
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
+  module: {
+    preLoaders: [{
+      test: /\.js$/,
+      loaders: ['eslint-loader'],
+      exclude: /node_modules/
+    }],
+    loaders: [
+      {
+        test: /\.js$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, 'src')
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css']
+      }
+    ]
+  }
 };
 
-if (TARGET === 'build') {
-	module.exports = merge(common, {
-		devtool: 'source-map',
-		module: {
-			loaders: [
-				{
-					test: /\.jsx?$/,
-					loader: 'babel?stage=1',
-					include: path.resolve(ROOT_PATH, 'app')
-				},
-			]
-		},
-		plugins: [
-			new webpack.DefinePlugin({
-				'process.env': {
-					'NODE_ENV': JSON.stringify('production')
-				}
-			}),
-			new webpack.optimize.UglifyJsPlugin({
-				compress: {
-					warnings: false
-				}
-			}),
-		],
-	});
-}
-
-if (TARGET === 'dev') {
-	module.exports = merge(common, {
-		devtool: 'eval',
-		entry: [
-			'webpack/hot/dev-server'
-		],
-		module: {
-			loaders: [
-				{
-					test: /\.jsx?$/,
-					loaders: ['react-hot', 'babel?stage=1'],
-					include: path.resolve(ROOT_PATH, 'app')
-				},
-			]
-		}
-	});
-}
+module.exports = config;

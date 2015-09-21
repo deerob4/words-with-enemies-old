@@ -1,0 +1,33 @@
+.scoreboard {
+  text-align: center;
+  font-size: 30px;
+  padding: 10px;
+  font-family: Dosis, sans-serif;
+  font-weight: 600;
+}
+
+.userRotate {
+  -webkit-animation: user-rotate 5s infinite linear;
+}
+
+.computerRotate {
+  -webkit-animation: computer-rotate 5s infinite linear;
+}
+
+@-webkit-keyframes user-rotate {
+  25% {
+    -webkit-transform: rotate(-2deg);
+  }
+  75% {
+    -webkit-transform: rotate(2deg);
+  }
+}
+
+@-webkit-keyframes computer-rotate {
+  25% {
+    -webkit-transform: rotate(2deg);
+  }
+  75% {
+    -webkit-transform: rotate(-2deg);
+  }
+}

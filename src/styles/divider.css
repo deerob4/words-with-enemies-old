@@ -1,0 +1,7 @@
+.divider {
+  width: 96%;
+  height: 4px;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 9px;
+}
