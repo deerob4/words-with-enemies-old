@@ -50,8 +50,9 @@ class App extends Component {
   }
 
   addLetter(type) {
+    const letters = this.props.letters;
     this.props.dispatch(GameActions.addLetter({
-      id: this.props.letters.bank[this.props.letters.bank.length - 1].id + 1,
+      id: Math.max(...letters.bank.map(x => x.id).concat(letters.word.map(x => x.id))) + 1
       value: type === 'vowel' ? choice(['a', 'e', 'i', 'o', 'u']) : choice(['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']),
       colours: letterColours(1)[0]
     }));
